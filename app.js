@@ -19,7 +19,7 @@ const passport = require("passport");
 require("./configs/passport");
 
 mongoose
-  .connect("mongodb://localhost/project-management-server", {
+  .connect("mongodb://localhost/project3", {
     useNewUrlParser: true
   })
   .then(x => {
@@ -85,7 +85,7 @@ app.use("/", index);
 const projectRoutes = require("./routes/project");
 app.use("/api/projects", projectRoutes);
 
-const taskRoutes = require("./routes/todo");
+const taskRoutes = require("./routes/task");
 app.use("/api/tasks", taskRoutes);
 
 const authRoutes = require("./routes/auth");

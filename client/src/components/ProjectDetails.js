@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EditProject from "./EditProject";
-import AddToDo from "./AddToDo";
-import ToDoList from "./ToDoList";
+import AddTask from "./AddTask";
+import TaskList from "./TaskList";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
@@ -90,10 +90,10 @@ export default class ProjectDetails extends Component {
     const owner = this.state.project.owner;
     const currentUser = this.props.user;
 
-    // const canDelete = !!(currentUser && currentUser._id === owner); 
+    // const canDelete = !!(currentUser && currentUser._id === owner);
+
     let canDelete = false;
-    if (currentUser && currentUser.id === owner) canDelete = true;
-    console.log(canDelete);
+    if (currentUser && currentUser._id === owner) canDelete = true;
 
     return (
       <div>
@@ -102,13 +102,14 @@ export default class ProjectDetails extends Component {
 
         <Button onClick={this.toggleEditForm}>Show Edit form</Button>
         <Button
-          onClick={() => this.setState({ todoForm: !this.state.todoForm })}
+          onClick={() => this.setState({ taskForm: !this.state.taskForm })}
         >
-          Show Todo form
+          Show Task form
         </Button>
-        {canDelete && (<Button variant="danger" onClick={this.deleteProject}>
-          Delete project
-        </Button>
+        {canDelete && (
+          <Button variant="danger" onClick={this.deleteProject}>
+            Delete project
+          </Button>
         )}
 
         {/* form that is displayed when the edit button is clicked */}
@@ -121,15 +122,15 @@ export default class ProjectDetails extends Component {
           />
         )}
 
-        {this.state.todoForm && (
-          <AddToDo
+        {this.state.taskForm && (
+          <AddTask
             projectId={this.state.project._id}
             getData={this.getData}
-            hideForm={() => this.setState({ todoForm: false })}
+            hideForm={() => this.setState({ taskForm: false })}
           />
         )}
 
-        <ToDoList todos={this.state.project.todos} />
+        <TaskList tasks={this.state.project.tasks} />
       </div>
     );
   }

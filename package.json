@@ -1,10 +1,10 @@
 {
-  "name": "project-management-server",
+  "name": "project3",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=project-management-server:* nodemon ./bin/www",
+    "dev": "DEBUG=project3:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {
