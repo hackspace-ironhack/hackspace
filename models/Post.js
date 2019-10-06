@@ -1,11 +1,9 @@
-//model for the individual project
+//model for post on profile
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-const projectSchema = new Schema({
-  title: String,
-  tools: String,
-  link: String,
+const postSchema = new Schema({
+  post: String,
   owner: { type: Schema.Types.ObjectId, ref: "User" },
   tasks: [
     {
@@ -15,6 +13,6 @@ const projectSchema = new Schema({
   ]
 });
 
-const Project = model("Project", projectSchema);
+const Post = model("Post", postSchema);
 
-module.exports = Project;
+module.exports = Post;

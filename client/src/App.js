@@ -3,8 +3,6 @@ import Navbar from "./components/Navbar";
 import { Route, Redirect } from "react-router-dom";
 import Profile from "./components/Profile";
 import About from "./components/About";
-import ProjectDetails from "./components/ProjectDetails";
-import TaskDetails from "./components/TaskDetails";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 
@@ -43,14 +41,6 @@ class App extends React.Component {
             else return <Redirect to="/about" />;
           }}
         />
-
-        <Route
-          exact
-          path="/profile/:id"
-          render={props => <ProjectDetails {...props} user={this.state.user} />}
-        />
-
-        <Route exact path="/tasks/:id" component={TaskDetails} />
       </div>
     );
   }
