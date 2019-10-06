@@ -9,6 +9,10 @@ class Profile extends Component{
       redirectToSignin:false
     }
   }
+  // added to stop the error
+  isAuthenticated = () => {
+    return {};
+  }
 read = (userId, token) => {
   return fetch(`${process.env.REACT_APP_API_URL}/user/${userId}`,{
     method:"GET",
@@ -25,7 +29,7 @@ read = (userId, token) => {
 };
 
   init = (userId)=>{  //makes the request to backend and gives userid 
-   const token = isAuthenticated().token;
+   const token = this.isAuthenticated().token; //added this to stop the error
     this.read(userId, token)
     .then(data => {
        if(data.error){
@@ -46,13 +50,13 @@ read = (userId, token) => {
      <div>
      <div clasName>
        <h2>Profile</h2>
-       <p>Hello (isAuthenticated().user.name)</p>
-       <p>Email: (isAuthenticated().user.email)</p>
+       <p>Hello (this.isAuthenticated().user.name)</p> 
+       <p>Email: (this.isAuthenticated().user.email)</p>
      </div>
     {/* only after login user can see delete profile and edit profile */}
      <div> 
-       {isAuthenticated().user &&
-         isAuthenticated().user._id == 
+       {this.isAuthenticated().user &&
+         this.isAuthenticated().user._id == 
          this.state.user._id && (
            <div> 
              <Link to = {`user/edit/${this.state.user._id}`}>

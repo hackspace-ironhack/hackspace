@@ -17,6 +17,10 @@ const Navbar = props => {
         <Link to="/">Home</Link>
       </Nav.Brand>
 
+      <Nav.Brand>
+        <Link to="/chat">Chat</Link>
+      </Nav.Brand>
+
       {props.user ? (
         <>
           <Nav.Brand>
