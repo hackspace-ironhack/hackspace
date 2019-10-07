@@ -1,10 +1,18 @@
 {
+<<<<<<< HEAD
   "name": "hackspace",
+=======
+  "name": "project3",
+>>>>>>> cynthia-branch
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+<<<<<<< HEAD
     "dev": "DEBUG=hackspace:* nodemon ./bin/www",
+=======
+    "dev": "DEBUG=project3:* nodemon ./bin/www",
+>>>>>>> cynthia-branch
     "dev-windows": "nodemon ./bin/www"
   },
   "dependencies": {

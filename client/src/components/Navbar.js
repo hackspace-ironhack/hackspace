@@ -7,17 +7,14 @@ const handleLogout = props => {
   logout().then(() => {
     props.setUser(null);
   });
-}
+};
 
 const Navbar = props => {
-  console.log("NAVBAR PROPS: ", props)
   return (
     <Nav className="nav justify-content-end" bg="primary">
-      {props.user &&
-        <Nav.Brand>Welcome,
-      {props.user.username}</Nav.Brand>}
+      {props.user && <Nav.Brand>Welcome, {props.user.username}</Nav.Brand>}
       <Nav.Brand>
-        <Link to="/">Home</Link>
+        <Link to="/"></Link>
       </Nav.Brand>
 
       {props.user ? (
@@ -25,20 +22,29 @@ const Navbar = props => {
           <Nav.Brand>
             <Link to="/projects">Projects</Link>
           </Nav.Brand>
+          {/* <Nav.Brand>
+            <Link to="/tasks">Tasks</Link>
+          </Nav.Brand> */}
+          {/* <Nav.Brand>
+            <Link to="/projects">Projects</Link>
+          </Nav.Brand> */}
           <Nav.Brand>
-            <Link to="/" onClick={() => handleLogout(props)}
-            >Logout</Link></Nav.Brand>
+            <Link to="/" onClick={() => handleLogout(props)}>
+              Logout
+            </Link>
+          </Nav.Brand>
         </>
       ) : (
-          <>
-            <Nav.Brand>
-              <Link to="/signup">Signup</Link>
-            </Nav.Brand>
-            <Nav.Brand>
-              <Link to="/login">Login</Link>
-            </Nav.Brand>
-          </>
-        )}
+        <>
+          <Nav.Brand>
+            <Link to="/signup">Signup</Link>
+          </Nav.Brand>
+          <Nav.Brand>
+            <Link to="/login">Login</Link>
+          </Nav.Brand>
+          
+        </>
+      )}
     </Nav>
   );
 };

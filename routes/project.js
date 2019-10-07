@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Project = require("../models/Project");
-const ToDo = require("../models/ToDo");
+// const Task = require("../models/Task");
 
 // POST /api/projects
 // create a new `project` resource
@@ -14,9 +14,8 @@ router.post("/", (req, res) => {
 
   Project.create({
     title: title,
-    description: description,
-    tasks: tasks, 
-    owner: owner 
+    tools: tools,
+    link: link
   })
     .then(project => {
       res.json(project);
@@ -30,7 +29,7 @@ router.post("/", (req, res) => {
 // returns a list of all projects
 router.get("/", (req, res) => {
   Project.find()
-    .populate("todos")
+    .populate("tasks")
     .then(projects => {
       res.json(projects);
     })
@@ -44,7 +43,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   // check if req.params.id is valid, if not respond with a 4xx status code
   Project.findById(req.params.id)
-    .populate("todos")
+    .populate("tasks")
     .then(project => {
       if (!project) {
         res.status(404).json(project);
@@ -59,11 +58,11 @@ router.get("/:id", (req, res) => {
 
 // PUT /api/projects/:id
 router.put("/:id", (req, res) => {
-  const { title, description } = req.body;
+  const { title,tools,link } = req.body;
 
   Project.findByIdAndUpdate(
     req.params.id,
-    { title, description },
+    { title, tools,link },
     // { new: true } ensures that we are getting the updated document in the .then callback
     { new: true }
   )
@@ -81,7 +80,7 @@ router.delete("/:id", (req, res) => {
   Project.findByIdAndDelete(req.params.id)
     .then(project => {
       // Deletes all the documents in the Task collection where the value for the `_id` field is present in the `project.tasks` array
-      return ToDo.deleteMany({ _id: { $in: project.todo } }).then(() => {
+      return Task.deleteMany({ _id: { $in: project.tasks } }).then(() => {
         res.json({ message: "ok" });
       });
     })

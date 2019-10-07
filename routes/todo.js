@@ -1,6 +1,5 @@
 const express = require("express");
 const ToDo = require("../models/ToDo");
-const Project = require("../models/Project");
 const router = express.Router();
 
 router.get("/:id", (req, res) => {
@@ -16,15 +15,13 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { title, description, projectId } = req.body;
+  const { title } = req.body;
 
   ToDo.create({
-    title,
-    description,
-    project: projectId
+    title
   })
     .then(todo => {
-      return Project.findByIdAndUpdate(projectId, {
+      return Todo.findByIdAndUpdate(userId, {
         $push: { todos: todo._id }
       }).then(() => {
         res.json({
@@ -39,9 +36,9 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res, next) => {
   const id = req.params.id;
-  const { title, description } = req.body;
+  const { title } = req.body;
 
-  ToDo.findByIdAndUpdate(id, { title, description }, { new: true })
+  ToDo.findByIdAndUpdate(id, { title }, { new: true })
     .then(todo => {
       res.json(todo);
     })
@@ -55,7 +52,7 @@ router.delete("/:id", (req, res, next) => {
 
   ToDo.findByIdAndDelete(id)
     .then(todo => {
-      return Project.findByIdAndUpdate(todo.project, {
+      return Todo.findByIdAndUpdate(todo.project, {
         $pull: { todos: id }
       }).then(() => {
         res.json({ message: "ok" });
