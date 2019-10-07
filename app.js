@@ -19,7 +19,7 @@ const passport = require("passport");
 require("./configs/passport");
 
 mongoose
-  .connect("mongodb://localhost/project-management-server", {
+  .connect("mongodb://localhost/hackspace", {
     useNewUrlParser: true
   })
   .then(x => {
