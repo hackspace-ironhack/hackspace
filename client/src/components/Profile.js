@@ -3,6 +3,7 @@ import { Redirect, Link } from "react-router-dom";
 import About from "./About";
 import UploadImage from "./UploadImage";
 import AddPost from "./AddPost";
+import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";

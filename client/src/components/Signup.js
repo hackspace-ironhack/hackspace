@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { signup } from "../services/api";
+import { Link } from "react-router-dom";
 
 export default class Signup extends Component {
   state = {
@@ -48,7 +49,7 @@ export default class Signup extends Component {
     }
     return (
       <>
-      <div>
+      <div className="signup-container">
         
         <div style={styles.signup}>
           <h1>Together we are stronger</h1>
@@ -88,8 +89,13 @@ export default class Signup extends Component {
           {this.state.message && (
             <Alert variant="danger">{this.state.message}</Alert>
           )}
-          <Button type="submit">Signup</Button>
+          <Button variant="secondary" type="submit">Signup</Button>
+          
         </Form>
+          Already have an account!
+          
+          <Button variant="secondary" type="submit">
+            <Link to = "/login">Login</Link></Button>
         </div>
         </div>
       </>

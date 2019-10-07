@@ -83,7 +83,7 @@ export default class About extends Component{
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="hobbies">Hobbies: </Form.Label>
+            <Form.Label htmlFor="hobbies">Interests: </Form.Label>
             <Form.Control
               onChange={this.handleChange}
               type="text"
