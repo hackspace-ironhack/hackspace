@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar as Nav } from "react-bootstrap";
+import { Navbar, Nav} from "react-bootstrap";
 
 import { logout } from "../services/api";
 
@@ -17,72 +17,89 @@ const handleProject = props => {
   
 };
 
-const Navbar = props => {
+const Navigation = props => {
   return (
-    <Nav className="nav justify-content-end" bg="dark" variant="light">
-      {/* {props.user && <Nav.Brand>Welcome, {props.user.username}</Nav.Brand>} */}
-      <Nav.Brand>
-        <Link to="/signup"></Link>
-      </Nav.Brand>
+    // <Nav className="nav justify-content-end" bg="dark" variant="light">
+    //   {/* {props.user && <Nav.Brand>Welcome, {props.user.username}</Nav.Brand>} */}
+    //   <Nav.Brand>
+    //     <Link to="/signup"></Link>
+    //   </Nav.Brand>
 
 
-      {props.user ? (
-        <>
-      <Nav.Brand>
-        <Link to="/projects" onClick = {() =>handleProject(props)}>Projects</Link>
-      </Nav.Brand>
+    //   {props.user ? (
+    //     <>
+    //   <Nav.Brand>
+    //     <Link to="/projects" onClick = {() =>handleProject(props)}>Projects</Link>
+    //   </Nav.Brand>
         
-      <Nav.Brand>
-        <Link to="/chat">Chat</Link>
-      </Nav.Brand>
+    //   <Nav.Brand>
+    //     <Link to="/chat">Chat</Link>
+    //   </Nav.Brand>
 
-      <Nav.Brand>
-        <Link to="/todolist">Things to do</Link>
-      </Nav.Brand> 
+    //   <Nav.Brand>
+    //     <Link to="/todolist">Things to do</Link>
+    //   </Nav.Brand> 
 
-      <Nav.Brand>
-        <Link to="/" onClick={() => handleLogout(props)}> Logout </Link>
-      </Nav.Brand>
-        </>
-      ) : (
-        <>
-        {/* div to get the 1st page */}
-        {/* delete the nav bar */}
-          <Nav.Brand>
-            <Link to="/signup">Signup</Link>
-          </Nav.Brand>
-          <Nav.Brand>
-            <Link to="/login">Login</Link>
-          </Nav.Brand>
+    //   <Nav.Brand>
+    //     <Link to="/" onClick={() => handleLogout(props)}> Logout </Link>
+    //   </Nav.Brand>
+    //     </>
+    //   ) : (
+    //     <>
+    //     {/* div to get the 1st page */}
+    //     {/* delete the nav bar */}
+    //       <Nav.Brand>
+    //         <Link to="/signup">Signup</Link>
+    //       </Nav.Brand>
+    //       <Nav.Brand>
+    //         <Link to="/login">Login</Link>
+    //       </Nav.Brand>
           
-        </>
-      )}
-    </Nav>
+    //     </>
+    //   )}
+    // </Nav>
 
-//     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-//   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-//   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-//   <Navbar.Collapse id="responsive-navbar-nav">
-//     <Nav className="mr-auto">
-//       <Nav.Link href="#features">Features</Nav.Link>
-//       <Nav.Link href="#pricing">Pricing</Nav.Link>
-//       <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-//         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-//         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-//         <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-//         <NavDropdown.Divider />
-//         <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-//       </NavDropdown>
-//     </Nav>
-//     <Nav>
-//       <Nav.Link href="#deets">More deets</Nav.Link>
-//       <Nav.Link eventKey={2} href="#memes">
-//         Dank memes
-//       </Nav.Link>
-//     </Nav>
-//   </Navbar.Collapse>
-// </Navbar>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href="/">Hackspace</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          <div className="salutation">
+    {props.user && <Nav.Item>Welcome, {props.user.username}!</Nav.Item>}
+          </div>
+          {props.user ? (
+            //  LOGGED USER
+            <>
+              <Nav.Item>
+                <Link className="bar-links" to="/projects" onClick = {() =>handleProject(props)}>Projects</Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link className="bar-links" to="/chat">Chat</Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link className="bar-links" to="/todolist">Things to do</Link>
+              </Nav.Item>
+              <Nav.Item>
+              <Link className="bar-links" to="/" onClick={() => handleLogout(props)}> Logout </Link>
+              </Nav.Item>
+            </>
+          ) : (
+              // NO LOGGED USER
+              <>
+                <Nav.Item>
+                  <Link className="bar-links" to="/signup">Signup</Link>
+                </Nav.Item>
+                <Nav.Item>
+                <Link className="bar-links" to="/login">Login</Link>
+                </Nav.Item>
+              </>
+            )}
+    
+    </Nav>
+    
+  </Navbar.Collapse>
+</Navbar>
   );
 };
 
-export default Navbar;
+export default Navigation;

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import Navigation from "./components/Navbar";
 import { Route, Redirect, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import About from "./components/About";
@@ -12,6 +12,7 @@ import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import backgroundImg from "./images/dot-bg-02.png"
 
 
 class App extends React.Component {
@@ -36,7 +37,7 @@ class App extends React.Component {
     return (
       <div className="App">
 
-        <Navbar user={this.state.user} setUser={this.setUser} />
+        <Navigation user={this.state.user} setUser={this.setUser} />
       <Switch>
         <Route
         exact path="/signup"

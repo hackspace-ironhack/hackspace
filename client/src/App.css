@@ -4,6 +4,13 @@ body {
   background-color: white;
 }
 
+.App {
+  background-image: url(./images/dot-bg-02.png);
+  background-repeat: no-repeat;
+  background-size: 100vh;
+
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -62,6 +69,7 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
   .signup-container h1{
     text-align: center;
@@ -74,3 +82,15 @@ h2 {
     font-size: 3vh;
   }
 }  
+
+
+/* HOME - LOGGED */
+
+.salutation {
+  color: #fddd00;
+}
+
+.bar-links{
+  color: #f4f4f4;
+  cursor: pointer !important;
+}
