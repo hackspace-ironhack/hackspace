@@ -28,7 +28,7 @@ export default class About extends Component{
   
       // http://localhost:5555/api/projects
       axios
-        .post("/api/about", {
+        .patch(`/api/about/${this.props.user._id}`, {
           name: this.state.name,
           city: this.state.city,
           skills: this.state.skills,
@@ -42,7 +42,7 @@ export default class About extends Component{
             hobbies:""
           });
           // updating parent's component's state
-          this.props.getData();
+          //this.props.getData();
           this.props.history.push("/profile")
         })
         .catch(err => {

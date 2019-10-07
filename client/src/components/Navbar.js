@@ -14,7 +14,7 @@ const Navbar = props => {
     <Nav className="nav justify-content-end" bg="dark" variant="light">
       {props.user && <Nav.Brand>Welcome, {props.user.username}</Nav.Brand>}
       <Nav.Brand>
-        <Link to="/">Home</Link>
+        <Link to="/"></Link>
       </Nav.Brand>
 
       <Nav.Brand>
@@ -26,9 +26,9 @@ const Navbar = props => {
           <Nav.Brand>
             <Link to="/projects">Projects</Link>
           </Nav.Brand>
-          <Nav.Brand>
+          {/* <Nav.Brand>
             <Link to="/tasks">Tasks</Link>
-          </Nav.Brand>
+          </Nav.Brand> */}
           {/* <Nav.Brand>
             <Link to="/projects">Projects</Link>
           </Nav.Brand> */}

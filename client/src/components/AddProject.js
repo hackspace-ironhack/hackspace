@@ -5,18 +5,15 @@ import { Form, Button } from "react-bootstrap";
 export default class AddProject extends Component {
   state = {
     title: "",
-    description: ""
+    tools: "",
+    link:""
   };
 
   handleChange = event => {
-    const name = event.target.name;
-    const value = event.target.value;
-    // const value =
-    //   event.target.type === "checkbox"
-    //     ? event.target.checked
-    //     : event.target.value;
-
-    this.setState({
+    const title = event.target.title;
+    const tools = event.target.tools;
+    const link = event.target.link;
+      this.setState({
       [name]: value
     });
   };
@@ -27,13 +24,15 @@ export default class AddProject extends Component {
     // http://localhost:5555/api/projects
     axios
       .post("/api/projects", {
-        title: this.state.title,
-        description: this.state.description
+        title = event.target.title,
+        tools = event.target.tools,
+        link = event.target.link
       })
       .then(() => {
         this.setState({
           title: "",
-          description: ""
+          tools: "",
+          link:""
         });
         // updates the parent's component's state, which causes new props to be passed to the <ProjectList/> component
         this.props.getData();
@@ -60,17 +59,27 @@ export default class AddProject extends Component {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="description">Description: </Form.Label>
+          <Form.Label htmlFor="tools">Tools: </Form.Label>
           <Form.Control
             onChange={this.handleChange}
             type="text"
-            name="description"
-            id="description"
+            name="tools"
+            id="tools"
             value={this.state.description}
           />
         </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="links">Link: </Form.Label>
+          <Form.Control
+            onChange={this.handleChange}
+            type="text"
+            name="link"
+            id="link"
+            value={this.state.links}
+          />
+        </Form.Group>
 
-        <Button type="submit">Add Project</Button>
+        <Button type="submit">Add Your Project</Button>
       </Form>
     );
   }

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Project = require("../models/Project");
-const Task = require("../models/Task");
+// const Task = require("../models/Task");
 
 // POST /api/projects
 // create a new `project` resource
@@ -14,9 +14,8 @@ router.post("/", (req, res) => {
 
   Project.create({
     title: title,
-    description: description,
-    tasks: tasks,
-    owner: owner
+    tools: tools,
+    link: link
   })
     .then(project => {
       res.json(project);
@@ -59,11 +58,11 @@ router.get("/:id", (req, res) => {
 
 // PUT /api/projects/:id
 router.put("/:id", (req, res) => {
-  const { title, description } = req.body;
+  const { title,tools,link } = req.body;
 
   Project.findByIdAndUpdate(
     req.params.id,
-    { title, description },
+    { title, tools,link },
     // { new: true } ensures that we are getting the updated document in the .then callback
     { new: true }
   )
