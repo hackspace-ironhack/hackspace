@@ -3,11 +3,10 @@ import { Redirect, Link } from "react-router-dom";
 import About from "./About";
 import UploadImage from "./UploadImage";
 import AddPost from "./AddPost";
+import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
-
-
 
 export default class Profile extends Component{
 
@@ -33,13 +32,26 @@ export default class Profile extends Component{
  render (){
    return (
      <div>
-
-       hobbies {this.state.profile.hobbies}
-       {/* <About getData={this.getData}/> */}
+       <ul>
+         <li>
+         Name: {this.state.profile.name}
+         </li>
+         <li>
+         City: {this.state.profile.city}
+         </li>
+         <li>
+         Skills: {this.state.profile.skills}
+         </li>
+         <li>
+         Hobbies: {this.state.profile.hobbies}
+         </li>
+       </ul>
        {/* <UploadImage/> */}
-       {/* <AddPost/> 
-       <Likebutton/>
-       <ToDoList/> */}
+       <AddPost user={this.state.profile}/>
+       {/* <AddProject/>  */}
+       
+       {/* <Likebutton/> */}
+       {/* <ToDoList/> */}
      </div>
    );    
       

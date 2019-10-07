@@ -35,8 +35,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Navbar user={this.state.user} setUser={this.setUser} />
 
+        <Navbar user={this.state.user} setUser={this.setUser} />
       <Switch>
         <Route
         exact path="/signup"
@@ -46,24 +46,24 @@ class App extends React.Component {
         exact path="/login"
         render={props => <Login setUser={this.setUser} {...props} />}
         />
-        
+        {/* if (this.state.user) { */}
         <Route
           exact path="/about"
-          render={props => {
-            if (this.state.user) return <About {...props} user={this.state.user} />;
-          else return <Redirect to="/login" />}}  
+          render={props => <About {...props} user={this.state.user} />}
+          // render={props => {
+          //   if (this.state.user) return <About {...props} user={this.state.user} />;
+          // else return <Redirect to="/login" />}}  
           />
 
         <Route
           exact path="/profile"
-          render={props => {
-            if (this.state.user) return <Profile {...props} user={this.state.user}/>;
-            else return <Redirect to="/login" />
+          render={props => <Profile {...props} user={this.state.user}/> }
+          // render={props => {
+          //   if (this.state.user) return <Profile {...props} user={this.state.user}/>;
+          //   else return <Redirect to="/login" />
             
-          }}
+          // }}
         />
-        </Switch>
-
         <Route
           exact path="/chat/:id"
           render={props => <ChatPage {...props} user={this.state.user}/>}
@@ -73,8 +73,11 @@ class App extends React.Component {
           exact path="/chat"
           render={props => <ChatList user={this.state.user}/>}
         />
+        </Switch>
 
-        <Route exact path="/tasks/:id" component={TaskDetails} />
+      {/* } else {
+        
+      } */}
       </div>
     );
   }

@@ -33,7 +33,7 @@ export default class Login extends Component {
         // successfully logged in
         // update the state for the parent component
         this.props.setUser(data);
-        this.props.history.push("/projects");
+        this.props.history.push("/profile");
       }
     });
   };
@@ -41,7 +41,6 @@ export default class Login extends Component {
   render() {
     return (
       <>
-        <h2>Login</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label htmlFor="username">Username: </Form.Label>

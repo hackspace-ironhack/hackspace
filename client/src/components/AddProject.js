@@ -5,15 +5,15 @@ import { Form, Button } from "react-bootstrap";
 export default class AddProject extends Component {
   state = {
     title: "",
-    tools: "",
-    link:""
+    description: ""
   };
 
   handleChange = event => {
-    const title = event.target.title;
-    const tools = event.target.tools;
-    const link = event.target.link;
-      this.setState({
+    const name = event.target.name;
+    const value = event.target.value;
+  
+
+    this.setState({
       [name]: value
     });
   };
@@ -24,15 +24,13 @@ export default class AddProject extends Component {
     // http://localhost:5555/api/projects
     axios
       .post("/api/projects", {
-        title = event.target.title,
-        tools = event.target.tools,
-        link = event.target.link
+        title: this.state.title,
+        description: this.state.description
       })
       .then(() => {
         this.setState({
           title: "",
-          tools: "",
-          link:""
+          description: ""
         });
         // updates the parent's component's state, which causes new props to be passed to the <ProjectList/> component
         this.props.getData();
@@ -59,28 +57,19 @@ export default class AddProject extends Component {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="tools">Tools: </Form.Label>
+          <Form.Label htmlFor="description">Description: </Form.Label>
           <Form.Control
             onChange={this.handleChange}
             type="text"
-            name="tools"
-            id="tools"
+            name="description"
+            id="description"
             value={this.state.description}
           />
         </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor="links">Link: </Form.Label>
-          <Form.Control
-            onChange={this.handleChange}
-            type="text"
-            name="link"
-            id="link"
-            value={this.state.links}
-          />
-        </Form.Group>
 
-        <Button type="submit">Add Your Project</Button>
+        <Button type="submit">Add Project</Button>
       </Form>
     );
   }
 }
+
