@@ -5,7 +5,11 @@ const userSchema = new Schema(
   {
     username: String,
     password: String,
-    email:String
+    email:String,
+    name:String,
+    city:String,
+    skills:String,
+    hobbies:String
   },
   {
     timestamps: true

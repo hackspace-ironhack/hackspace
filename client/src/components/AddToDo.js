@@ -47,16 +47,6 @@ export default class ToDoForm extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Description:</Form.Label>
-            <Form.Control
-              type="text"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-
           <Button type="submit">Add</Button>
         </Form>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import Profile from "./components/Profile";
 import About from "./components/About";
 import Signup from "./components/Signup";
@@ -25,6 +25,7 @@ class App extends React.Component {
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
 
+      <Switch>
         <Route
         exact path="/signup"
         render={props => <Signup setUser={this.setUser} {...props} />}
@@ -37,10 +38,20 @@ class App extends React.Component {
         <Route
           exact path="/about"
           render={props => {
-            if (this.state.user) return <About {...props} />;
-            else return <Redirect to="/about" />;
+            if (this.state.user) return <About {...props} user={this.state.user} />;
+          else return <Redirect to="/login" />}}  
+          />
+
+        <Route
+          exact path="/profile"
+          render={props => {
+            if (this.state.user) return <Profile {...props} user={this.state.user}/>;
+            else return <Redirect to="/login" />
+            
           }}
         />
+        </Switch>
+
       </div>
     );
   }

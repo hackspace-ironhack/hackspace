@@ -5,14 +5,14 @@ import UploadImage from "./UploadImage";
 import AddPost from "./AddPost";
 import Likebutton from "./Likebutton";
 import axios from "axios";
-import ToDoList from "ToDoList";
+import ToDoList from "./ToDoList";
 
 
 
 export default class Profile extends Component{
 
    state = {
-     profile: []
+     profile: {}
    };
 
    componentDidMount = () => {
@@ -20,8 +20,9 @@ export default class Profile extends Component{
    };
 
    getData = () => {
-   axios.get("/api/profile").then(response => {
-     this.setState({
+   axios.get(`/api/about/${this.props.user._id}`).then(response => { 
+    console.log("response : ", response.data)
+    this.setState({
        profile:response.data
      });
    }).catch(err =>{
@@ -32,11 +33,13 @@ export default class Profile extends Component{
  render (){
    return (
      <div>
-       <About getData={this.getData}/>
-       <UploadImage/>
-       <AddPost/> 
+
+       hobbies {this.state.profile.hobbies}
+       {/* <About getData={this.getData}/> */}
+       {/* <UploadImage/> */}
+       {/* <AddPost/> 
        <Likebutton/>
-       <ToDoList/>
+       <ToDoList/> */}
      </div>
    );    
       
