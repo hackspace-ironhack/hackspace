@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Khula:700);
+
+body {
+  background-color: rgba(252, 248, 7, 0.562)
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -48,3 +54,23 @@ h2 {
 .projects-container > * {
   flex: 1;
 }
+
+
+/* SIGN UP */
+@media only screen and (max-width: 800px) {
+  .signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .signup-container h1{
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    color: grey;
+    width: 80vw;
+    height: 15vh;
+    font-family: Khula;
+    font-size: 3vh;
+  }
+}  
