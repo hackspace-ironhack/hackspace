@@ -88,4 +88,8 @@ app.use("/api/projects", projectRoutes);
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
 
+// chat
+const chatRoutes = require("./routes/chat");
+app.use("/api/chat", chatRoutes);
+
 module.exports = app;

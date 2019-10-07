@@ -11,10 +11,14 @@ const handleLogout = props => {
 
 const Navbar = props => {
   return (
-    <Nav className="nav justify-content-end" bg="primary">
+    <Nav className="nav justify-content-end" bg="dark" variant="light">
       {props.user && <Nav.Brand>Welcome, {props.user.username}</Nav.Brand>}
       <Nav.Brand>
         <Link to="/"></Link>
+      </Nav.Brand>
+
+      <Nav.Brand>
+        <Link to="/chat">Chat</Link>
       </Nav.Brand>
 
       {props.user ? (

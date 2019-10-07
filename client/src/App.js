@@ -5,9 +5,14 @@ import Profile from "./components/Profile";
 import About from "./components/About";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import ChatPage from "./components/ChatPage";
+import ChatList from "./components/ChatList";
+import TaskDetails from "./components/ToDoList";
+import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+
 
 class App extends React.Component {
   state = {
@@ -19,6 +24,13 @@ class App extends React.Component {
       user: user
     });
   };
+
+  componentDidMount() {
+    axios.get("/api/auth/loggedin").then(response => {
+      const user = response.data;
+      this.setUser(user);
+    });
+  }
 
   render() {
     return (
@@ -52,6 +64,17 @@ class App extends React.Component {
         />
         </Switch>
 
+        <Route
+          exact path="/chat/:id"
+          render={props => <ChatPage {...props} user={this.state.user}/>}
+        />
+
+        <Route
+          exact path="/chat"
+          render={props => <ChatList user={this.state.user}/>}
+        />
+
+        <Route exact path="/tasks/:id" component={TaskDetails} />
       </div>
     );
   }
