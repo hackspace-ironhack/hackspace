@@ -59,7 +59,7 @@ app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
-// ADD SESSION SETTINGS HERE:
+// 
 
 const MongoStore = require("connect-mongo")(session);
 app.use(
@@ -70,21 +70,20 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 );
-// USE passport.initialize() and passport.session() HERE:
+// 
 app.use(passport.initialize());
 app.use(passport.session());
 
-// default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
+// 
+app.locals.title = "HackSpace";
 
-// ROUTES MIDDLEWARE STARTS HERE:
+// 
 
 const index = require("./routes/index");
 app.use("/", index);
 
 const projectRoutes = require("./routes/project");
 app.use("/api/projects", projectRoutes);
-
 
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
