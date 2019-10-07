@@ -1,6 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 const User = require("../models/User")
+const Post = require("../models/Post")
+
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -28,5 +30,29 @@ router.get('/api/about/:id', (req,res)=>{
   })
   .catch(err=>console.log(err))
 })
+
+//POST api/profile
+router.post('/api/post', (req,res)=>{
+  const {post, owner} = req.body;
+  Post.create({post,owner})
+  .then(post =>{
+    res.json(post)
+  })
+  .catch(err=>console.log(err)) 
+})
+
+router.get('/api/post/:owner',(req,res) =>{
+  const owner = req.params.owner;
+  Post.find({owner:owner})
+  .then(post =>{
+    console.log("all the posts : ", post)
+    res.json(post)
+  })
+  .catch(err=>console.log(err)) 
+})
+
+
+
+
 
 module.exports = router;

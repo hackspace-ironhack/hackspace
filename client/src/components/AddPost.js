@@ -5,22 +5,38 @@ import {Form, Button} from "react-bootstrap";
 export default class AddPost extends Component {
    
     state ={
-      post : ""
+      post : "",
+      posts: []
     };
 
-    handleChange = event => {
-      const post = event.target.post;
+    componentWillMount(){
+      console.log("will mount", this.props.user)
+      axios.get(`api/post/${this.props.user}`)
+      .then(response=>{
+        console.log(response);
         this.setState({
-        [post]: post
+          posts:response
+        })
+      })
+    }
+
+    handleChange = event => {
+      console.log(this.state);
+      const value = event.target.value;
+      const name = event.target.name;
+        this.setState({
+        [name]: value
       });
+
     };
 
     handleSubmit = event => {
       event.preventDefault();
       // http://localhost:5555/api/profile
       axios
-        .post("/api/profile", {
-          post: this.state.post
+        .post("/api/post", {
+          post: this.state.post,
+          owner:this.props.user
         })
         .then(() => {
           this.setState({
@@ -35,6 +51,7 @@ export default class AddPost extends Component {
     };
 
     render() {
+      console.log("mounted coponent ", this.props)
       return (
         <form onSubmit = {this.handleSubmit}>
             <label htmlFor="post">Your Post: </label>
@@ -47,6 +64,10 @@ export default class AddPost extends Component {
             />
           <Button type="submit">Add</Button>
         </form>
+
+        // {this.state.posts.map(element=>{
+        //   return (<div> element.post</div>)
+        // })}
       );
     }
 }
