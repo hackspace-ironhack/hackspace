@@ -38,7 +38,11 @@ class App extends React.Component {
     axios.get("/api/auth/loggedin").then(response => {
       const user = response.data;
       this.setUser(user);
-    }).catch(() => this.setUser(null));
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+      this.setUser(null);
+    });
   }
 
   render() {
