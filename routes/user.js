@@ -10,6 +10,7 @@ router.get('/:id', (req, res) => {
     .then(user => res.json(
       {
         username: user.username,
+        _id: user._id,
         email:user.email,
         name: user.name,
         city: user.city,

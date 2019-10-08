@@ -81,6 +81,7 @@ router.get("/loggedin", (req, res) => {
   res.json(
     {
       username: user.username,
+      _id: user._id,
       email: user.email,
       name: user.name,
       city: user.city,
