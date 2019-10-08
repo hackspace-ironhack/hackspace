@@ -7,7 +7,7 @@ import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Badge } from 'react-bootstrap';
 
 import placeHolder from '../images/profile-placeholder.jpeg';
 
@@ -79,6 +79,11 @@ export default class Profile extends Component {
                 </Card>
               </div>
               
+            </div>
+            <div className="profile-links">
+              <Button variant="secondary">Projects</Button>
+              <Button variant="secondary">To Do List</Button>
+              <Button variant="secondary">Friends</Button>
             </div>
             <div className="profile-post">
             <Card border="warning">
