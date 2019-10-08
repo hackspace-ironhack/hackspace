@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import About from "./About";
 import UploadImage from "./UploadImage";
@@ -7,54 +7,53 @@ import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
+import {Button} from 'react-bootstrap';
 
-export default class Profile extends Component{
+export default class Profile extends Component {
 
-   state = {
-     profile: {}
-   };
+    state = {
+        profile: {}
+    }
 
-   componentDidMount = () => {
-     this.getData();
-   };
+    userId = this.props.match.params.id;
 
-   getData = () => {
-   axios.get(`/api/about/${this.props.user._id}`).then(response => { 
-    console.log("response : ", response.data)
-    this.setState({
-       profile:response.data
-     });
-   }).catch(err =>{
-     console.log(err);
-   });
- };
+    componentDidMount = () => {
+        this.loadData();
+    }
 
- render (){
-   return (
-     <div>
-       <ul>
-         <li>
-         Name: {this.state.profile.name}
-         </li>
-         <li>
-         City: {this.state.profile.city}
-         </li>
-         <li>
-         Skills: {this.state.profile.skills}
-         </li>
-         <li>
-         Hobbies: {this.state.profile.hobbies}
-         </li>
-       </ul>
-       {/* <UploadImage/> */}
-       <AddPost user={this.state.profile}/>
-       {/* <AddProject/>  */}
-       
-       {/* <Likebutton/> */}
-       {/* <ToDoList/> */}
-     </div>
-   );    
-      
+    loadData = () => {
+        if (this.userId !== undefined) {
+            console.log(this.userId);
+            axios.get(`/api/user/${this.userId}`).then(response => this.setState({profile: response.data}));
+        }
+    }
+
+    followUser = () => {
+        axios.post('/api/user/friends', {friend: this.userId})
+    }
+
+  render = () => {
+    const user = this.userId !== undefined ? this.state.profile : this.props.user;
+    return (
+      <div>
+        {user && (
+          <div>
+            <ul>
+              <li>Name: {user.name}</li>
+              <li>City: {user.city}</li>
+              <li>Skills: {user.skills}</li>
+              <li>Hobbies: {user.hobbies}</li>
+            </ul>
+              {this.props.user && user._id === this.props.user._id &&
+                  <AddPost user={user} />
+              }
+              {this.props.user && user._id !== this.props.user._id &&
+                <Button onClick={this.followUser}>Follow</Button>
+              }
+
+          </div>
+        )}
+      </div>
+    );
+  };
 }
-}
-

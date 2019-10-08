@@ -6,7 +6,7 @@ const userSchema = new Schema(
     username: String,
     password: String,
     email:String,
-    name:String,
+    name: String,
     city:String,
     skills:String,
     hobbies:String
@@ -15,6 +15,7 @@ const userSchema = new Schema(
     timestamps: true
   }
 );
+userSchema.index({name: 'text'})
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
