@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import About from "./About";
 // import UploadImage from "./UploadImage";
@@ -7,56 +7,125 @@ import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
-import FaceRecognition from './FaceRecognition'
+import { Button, Card } from 'react-bootstrap';
+import UploadProfilePic from "./UploadProfilePic";
+
+import placeHolder from '../images/profile-placeholder.jpeg';
 
 
 export default class Profile extends Component {
 
-  state = {
-    profile: {}
-  };
+    state = {
+        profile: {}
+    }
 
-  componentDidMount = () => {
-    this.getData();
-  };
+    userId = this.props.match.params.id;
 
-  getData = () => {
-    axios.get(`/api/about/${this.props.user._id}`).then(response => {
-      console.log("response : ", response.data)
-      this.setState({
-        profile: response.data
-      });
-    }).catch(err => {
-      console.log(err);
-    });
-  };
+    componentDidMount = () => {
+        this.loadData();
+    }
 
-  render() {
+  loadData = () => {
+      // only loads a different user if an id is passed in the url
+      if (this.userId !== undefined) {
+          console.log(this.userId);
+          axios.get(`/api/user/${this.userId}`).then(response => this.setState({profile: response.data}));
+      }
+    }
+
+    followUser = () => {
+        axios.post('/api/user/friends', {friend: this.userId})
+    }
+
+  render = () => {
+    // Choses between your own profile or someone elses.
+    const user = this.userId !== undefined ? this.state.profile : this.props.user;
+    // if showing your own profile, it uses data from the props
     return (
       <div>
-        <ul>
-          <li>
-            Name: {this.state.profile.name}
-          </li>
-          <li>
-            City: {this.state.profile.city}
-          </li>
-          <li>
-            Skills: {this.state.profile.skills}
-          </li>
-          <li>
-            Hobbies: {this.state.profile.hobbies}
-          </li>
-        </ul>
-        {/* <UploadImage/> */}
-        <AddPost user={this.state.profile} />
-        {/* <AddProject/>  */}
+        {user && (
+          <div>
+            {/* <ul>
+              <li>Name: {user.name}</li>
+              <li>City: {user.city}</li>
+              <li>Skills: {user.skills}</li>
+              <li>Hobbies: {user.hobbies}</li>
+            </ul> */}
+            <div className="profile-intro">
+                
+                <div className="about-card">
+                  <Card border="dark" style={{ width: '18rem' }}>
+                    <Card.Header>About</Card.Header>
+                    <Card.Body>
+                      {/* <Card.Title>About:</Card.Title> */}
+                      <Card.Text>
+                        <ul>
+                          <li>City: {user.city}</li>
+                          <li>Skills: {user.skills}</li>
+                          <li>Hobbies: {user.hobbies}</li>
+                        </ul>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+              </div>
+              
+              <div className="profile-picture-card">
+                <Card border="dark" style={{ width: '18rem' }}>
+                  <Card.Img variant="top" src={placeHolder} />
+                  <Card.Body>
+                    <Card.Title>{user.name}</Card.Title>
+                    
+                    <Button variant="warning">Edit your profile</Button>
+                  </Card.Body>
+                </Card>
+              </div>
+              
+            </div>
+            <div className="profile-post">
+            <Card border="warning">
+              <Card.Header as="h5">PLACE HOLDER FOR POST</Card.Header>
+              <Card.Body>
+                <Card.Title></Card.Title>
+                <Card.Text>
+                  {this.props.user && user._id === this.props.user._id &&
+                  <AddPost user={user} />
+              }
+                </Card.Text>
+                <Button variant="warning">Publish</Button>
+              </Card.Body>
+            </Card>
+            
+            <Card border="light">
+              <Card.Header>Posted by {user.name} on 01/01/01.</Card.Header>
+              <Card.Body>
+                <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
+                <Card.Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus mauris in mauris auctor tempus. Pellentesque sit amet mollis turpis. Quisque dignissim urna id nulla rhoncus, vel sodales tellus ornare. Morbi nisi ex, tempor nec risus tincidunt, vehicula hendrerit metus. 
+                        
+                </Card.Text>
+              </Card.Body>
+              </Card>
+              <Card border="light">
+              <Card.Header>Posted by {user.name} on 01/01/01.</Card.Header>
+              <Card.Body>
+                <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
+                <Card.Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus mauris in mauris auctor tempus. Pellentesque sit amet mollis turpis. Quisque dignissim urna id nulla rhoncus, vel sodales tellus ornare. Morbi nisi ex, tempor nec risus tincidunt, vehicula hendrerit metus. 
+                        
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            </div>
+            
+              {this.props.user && user._id !== this.props.user._id &&
+                <Button variant="warning" onClick={this.followUser}>Follow</Button>
+            }
 
-        {/* <Likebutton/> */}
-        <ToDoList/>
+              <UploadProfilePic user={this.props.user}/>
+          </div>
+          
+        )}
       </div>
     );
-
-  }
+  };
 }
-

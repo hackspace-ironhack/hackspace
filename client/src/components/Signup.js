@@ -92,7 +92,7 @@ export default class Signup extends Component {
           <Button variant="secondary" type="submit">Signup</Button>
           
         </Form>
-          Already have an account!
+          Already have an account?
           
           <Button variant="secondary" type="submit">
             <Link to = "/login">Login</Link></Button>

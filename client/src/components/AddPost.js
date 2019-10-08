@@ -62,7 +62,7 @@ export default class AddPost extends Component {
               name="post"
               value={this.state.post}
             />
-          <Button type="submit">Add</Button>
+          <Button variant="warning" type="submit">Add</Button>
         </form>
 
         // {this.state.posts.map(element=>{

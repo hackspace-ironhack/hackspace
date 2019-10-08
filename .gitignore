@@ -8,3 +8,6 @@ npm-debug.log
 .env
 
 .vscode
+
+.idea
+move_files.sh
