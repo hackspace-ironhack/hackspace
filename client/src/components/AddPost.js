@@ -6,28 +6,14 @@ export default class AddPost extends Component {
    
     state ={
       post : "",
-      posts: []
     };
 
-    componentWillMount(){
-      console.log("will mount", this.props.user)
-      axios.get(`api/post/${this.props.user}`)
-      .then(response=>{
-        console.log(response);
-        this.setState({
-          posts:response
-        })
-      })
-    }
-
     handleChange = event => {
-      console.log(this.state);
       const value = event.target.value;
       const name = event.target.name;
         this.setState({
         [name]: value
       });
-
     };
 
     handleSubmit = event => {
@@ -36,14 +22,13 @@ export default class AddPost extends Component {
       axios
         .post("/api/post", {
           post: this.state.post,
-          owner:this.props.user
+          // owner:this.props.user
         })
         .then(() => {
           this.setState({
             post: ""
           });
-          // updates the parent's component's state, which causes new props to be passed to the <ProjectList/> component
-          this.props.getData();
+        this.props.getData();
         })
         .catch(err => {
           console.log(err);
@@ -51,23 +36,20 @@ export default class AddPost extends Component {
     };
 
     render() {
-      console.log("mounted coponent ", this.props)
       return (
-        <form onSubmit = {this.handleSubmit}>
-            <label htmlFor="post">Your Post: </label>
-              <input
+        <Form onSubmit = {this.handleSubmit}>
+          <Form.Group> 
+            <Form.Label htmlFor="post">Your Post: </Form.Label>
+              <Form.Control
               type="text"
               onChange={this.handleChange}
               id="post"
               name="post"
               value={this.state.post}
             />
-          <Button variant="warning" type="submit">Add</Button>
-        </form>
-
-        // {this.state.posts.map(element=>{
-        //   return (<div> element.post</div>)
-        // })}
+            </Form.Group>
+          <Button variant="warning" active type="submit">Post your thought</Button>
+        </Form>
       );
     }
 }

@@ -2,35 +2,52 @@ import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import About from "./About";
 import UploadImage from "./UploadImage";
-import AddPost from "./AddPost";
+import Post from "./Post";
 import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
+import PostList from "./PostList";
+import AddPost from "./AddPost";
+import placeHolder from "../images/profile-placeholder.jpeg";
+
 import { Button, Card, Badge } from 'react-bootstrap';
-
-import placeHolder from '../images/profile-placeholder.jpeg';
-
 
 export default class Profile extends Component {
 
     state = {
-        profile: {}
+      profile: {},
+      posts: []
     }
 
     userId = this.props.match.params.id;
 
     componentDidMount = () => {
-        this.loadData();
+      this.loadProfile();
+      this.loadPosts();
     }
 
-  loadData = () => {
+  loadProfile = () => {
       // only loads a different user if an id is passed in the url
       if (this.userId !== undefined) {
           console.log(this.userId);
-          axios.get(`/api/user/${this.userId}`).then(response => this.setState({profile: response.data}));
+        axios.get(`/api/user/${this.userId}`)
+          .then(response => this.setState({ profile: response.data }));
       }
-    }
+  }
+  
+  loadPosts = () => {
+      axios.get("/api/post")
+      .then (response => {
+        this.setState({
+          posts: response.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    
+  }
 
     followUser = () => {
         axios.post('/api/user/friends', {friend: this.userId})
@@ -43,6 +60,7 @@ export default class Profile extends Component {
     return (
       <div>
         {user && (
+          
           <div>
             {/* <ul>
               <li>Name: {user.name}</li>
@@ -86,41 +104,18 @@ export default class Profile extends Component {
               <Button variant="secondary" active>Friends</Button>
             </div>
             <div className="profile-post">
-            <Card border="warning">
-              <Card.Header as="h5">PLACE HOLDER FOR POST</Card.Header>
-              <Card.Body>
-                <Card.Title></Card.Title>
-                <Card.Text>
+              <Card border = "warning">
+                <Card.Body>
+                  <Card.Text>
                   {this.props.user && user._id === this.props.user._id &&
-                  <AddPost user={user} />
-              }
-                </Card.Text>
-                <Button variant="warning" active>Publish</Button>
-              </Card.Body>
-            </Card>
-            
-            <Card border="light">
-              <Card.Header>Posted by {user.name} on 01/01/01.</Card.Header>
-              <Card.Body>
-                <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
-                <Card.Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus mauris in mauris auctor tempus. Pellentesque sit amet mollis turpis. Quisque dignissim urna id nulla rhoncus, vel sodales tellus ornare. Morbi nisi ex, tempor nec risus tincidunt, vehicula hendrerit metus. 
-                        
+                      <AddPost getData={this.loadPosts}/>
+                  }
                 </Card.Text>
               </Card.Body>
               </Card>
-              <Card border="light">
-              <Card.Header>Posted by {user.name} on 01/01/01.</Card.Header>
-              <Card.Body>
-                <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
-                <Card.Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus mauris in mauris auctor tempus. Pellentesque sit amet mollis turpis. Quisque dignissim urna id nulla rhoncus, vel sodales tellus ornare. Morbi nisi ex, tempor nec risus tincidunt, vehicula hendrerit metus. 
-                        
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            </div>
-            
+              <PostList posts={this.state.posts} user={this.props.user}/>
+          
+               </div>
               {this.props.user && user._id !== this.props.user._id &&
                 <Button variant="warning" onClick={this.followUser} active>Follow</Button>
             }

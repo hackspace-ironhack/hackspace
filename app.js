@@ -80,8 +80,12 @@ app.locals.title = "HackSpace";
 const index = require("./routes/index");
 app.use("/", index);
 
-const projectRoutes = require("./routes/project");
-app.use("/api/projects", projectRoutes);
+
+const postRoutes = require("./routes/post");
+app.use("/api/post", postRoutes);
+
+const portfolioRoutes = require("./routes/portfolio");
+app.use("/api/portfolio", portfolioRoutes);
 
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);

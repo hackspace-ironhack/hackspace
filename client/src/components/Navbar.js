@@ -11,55 +11,15 @@ const handleLogout = props => {
 };
 
 const handleProject = props => {
-  // project().then(()=>{
+  //  portfolio().then(()=>{
   //   props.setUser()
-  // });
+  //  });
   
 };
 
 const Navigation = props => {
   return (
-    // <Nav className="nav justify-content-end" bg="dark" variant="light">
-    //   {/* {props.user && <Nav.Brand>Welcome, {props.user.username}</Nav.Brand>} */}
-    //   <Nav.Brand>
-    //     <Link to="/signup"></Link>
-    //   </Nav.Brand>
-
-
-    //   {props.user ? (
-    //     <>
-    //   <Nav.Brand>
-    //     <Link to="/projects" onClick = {() =>handleProject(props)}>Projects</Link>
-    //   </Nav.Brand>
-        
-    //   <Nav.Brand>
-    //     <Link to="/chat">Chat</Link>
-    //   </Nav.Brand>
-
-    //   <Nav.Brand>
-    //     <Link to="/todolist">Things to do</Link>
-    //   </Nav.Brand> 
-
-    //   <Nav.Brand>
-    //     <Link to="/" onClick={() => handleLogout(props)}> Logout </Link>
-    //   </Nav.Brand>
-    //     </>
-    //   ) : (
-    //     <>
-    //     {/* div to get the 1st page */}
-    //     {/* delete the nav bar */}
-    //       <Nav.Brand>
-    //         <Link to="/signup">Signup</Link>
-    //       </Nav.Brand>
-    //       <Nav.Brand>
-    //         <Link to="/login">Login</Link>
-    //       </Nav.Brand>
-          
-    //     </>
-    //   )}
-    // </Nav>
-
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Navbar.Brand href="/">Hackspace</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
@@ -74,7 +34,7 @@ const Navigation = props => {
                 <Link className="bar-links" to="/profile">Profile</Link>
               </Nav.Item>
               <Nav.Item>
-                <Link className="bar-links" to="/projects" onClick = {() =>handleProject(props)}>Projects</Link>
+                <Link className="bar-links" to="/portfolio" onClick = {() =>handleProject(props)}>My Portfolio</Link>
               </Nav.Item>
               <Nav.Item>
                 <Link className="bar-links" to="/chat">Chat</Link>
