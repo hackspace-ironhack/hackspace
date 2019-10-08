@@ -11,7 +11,10 @@ export default class AddProject extends Component {
   handleChange = event => {
     const name = event.target.name;
     const value = event.target.value;
-  
+    // const value =
+    //   event.target.type === "checkbox"
+    //     ? event.target.checked
+    //     : event.target.value;
 
     this.setState({
       [name]: value
@@ -72,4 +75,3 @@ export default class AddProject extends Component {
     );
   }
 }
-

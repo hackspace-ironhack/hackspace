@@ -7,8 +7,8 @@ import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
-import { Button, Card } from 'react-bootstrap';
-import UploadProfilePic from "./UploadProfilePic";
+import { Button, Card, Badge } from 'react-bootstrap';
+import UploadProfilePic from './UploadProfilePic';
 
 import placeHolder from '../images/profile-placeholder.jpeg';
 
@@ -32,6 +32,11 @@ export default class Profile extends Component {
           axios.get(`/api/user/${this.userId}`).then(response => this.setState({profile: response.data}));
       }
     }
+    routeChange(){
+       let path = `newPath`;
+       this.props.history.push(path);
+
+    }
 
     followUser = () => {
         axios.post('/api/user/friends', {friend: this.userId})
@@ -51,6 +56,9 @@ export default class Profile extends Component {
               <li>Skills: {user.skills}</li>
               <li>Hobbies: {user.hobbies}</li>
             </ul> */}
+            <div className="imagebox">
+              <UploadProfilePic user={this.props.user}/>
+            </div>
             <div className="profile-intro">
                 
                 <div className="about-card">
@@ -75,11 +83,17 @@ export default class Profile extends Component {
                   <Card.Body>
                     <Card.Title>{user.name}</Card.Title>
                     
-                    <Button variant="warning">Edit your profile</Button>
+                    <Button onClick = {this.routeChange}>
+                    variant="warning">Edit your profile</Button>
                   </Card.Body>
                 </Card>
               </div>
               
+            </div>
+            <div className="profile-links">
+              <Button variant="secondary">Projects</Button>
+              <Button variant="secondary">To Do List</Button>
+              <Button variant="secondary">Friends</Button>
             </div>
             <div className="profile-post">
             <Card border="warning">
@@ -120,10 +134,9 @@ export default class Profile extends Component {
               {this.props.user && user._id !== this.props.user._id &&
                 <Button variant="warning" onClick={this.followUser}>Follow</Button>
             }
+                <UploadProfilePic/>
 
-              <UploadProfilePic user={this.props.user}/>
           </div>
-          
         )}
       </div>
     );

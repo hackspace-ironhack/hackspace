@@ -6,6 +6,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 // get user by id to show as profile
 router.get('/:id', (req, res) => {
+  // Post.find({owner: req.params.id})
   User.findById(req.params.id)
     .then(user => res.json(
       {

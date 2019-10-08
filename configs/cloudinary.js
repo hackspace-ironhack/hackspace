@@ -9,10 +9,10 @@ cloudinary.config({
 });
 
 const storage = cloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary,
   folder: 'Upload-Img',
   allowedFormats: ['jpg', 'png'],
-  filename(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
 });

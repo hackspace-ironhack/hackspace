@@ -7,7 +7,7 @@ const ToDoList = props => {
        {props.todos.map(todo => {
         return (
           <div key={todo._id}>
-            <Link to={`/tasks/${todo._id}`}>
+            <Link to={`/todo/${todo._id}`}>
               <h3>{todo.title}</h3>
             </Link>
           </div>
