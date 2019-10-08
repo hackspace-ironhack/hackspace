@@ -7,7 +7,10 @@ import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
-import {Button} from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+
+import placeHolder from '../images/profile-placeholder.jpeg';
+
 
 export default class Profile extends Component {
 
@@ -41,18 +44,81 @@ export default class Profile extends Component {
       <div>
         {user && (
           <div>
-            <ul>
+            {/* <ul>
               <li>Name: {user.name}</li>
               <li>City: {user.city}</li>
               <li>Skills: {user.skills}</li>
               <li>Hobbies: {user.hobbies}</li>
-            </ul>
-              {this.props.user && user._id === this.props.user._id &&
+            </ul> */}
+            <div className="profile-intro">
+                
+                <div className="about-card">
+                  <Card border="dark" style={{ width: '18rem' }}>
+                    <Card.Header>About</Card.Header>
+                    <Card.Body>
+                      {/* <Card.Title>About:</Card.Title> */}
+                      <Card.Text>
+                        <ul>
+                          <li>City: {user.city}</li>
+                          <li>Skills: {user.skills}</li>
+                          <li>Hobbies: {user.hobbies}</li>
+                        </ul>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+              </div>
+              
+              <div className="profile-picture-card">
+                <Card border="dark" style={{ width: '18rem' }}>
+                  <Card.Img variant="top" src={placeHolder} />
+                  <Card.Body>
+                    <Card.Title>{user.name}</Card.Title>
+                    
+                    <Button variant="warning">Edit your profile</Button>
+                  </Card.Body>
+                </Card>
+              </div>
+              
+            </div>
+            <div className="profile-post">
+            <Card border="warning">
+              <Card.Header as="h5">PLACE HOLDER FOR POST</Card.Header>
+              <Card.Body>
+                <Card.Title></Card.Title>
+                <Card.Text>
+                  {this.props.user && user._id === this.props.user._id &&
                   <AddPost user={user} />
               }
+                </Card.Text>
+                <Button variant="warning">Publish</Button>
+              </Card.Body>
+            </Card>
+            
+            <Card border="light">
+              <Card.Header>Posted by {user.name} on 01/01/01.</Card.Header>
+              <Card.Body>
+                <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
+                <Card.Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus mauris in mauris auctor tempus. Pellentesque sit amet mollis turpis. Quisque dignissim urna id nulla rhoncus, vel sodales tellus ornare. Morbi nisi ex, tempor nec risus tincidunt, vehicula hendrerit metus. 
+                        
+                </Card.Text>
+              </Card.Body>
+              </Card>
+              <Card border="light">
+              <Card.Header>Posted by {user.name} on 01/01/01.</Card.Header>
+              <Card.Body>
+                <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
+                <Card.Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus mauris in mauris auctor tempus. Pellentesque sit amet mollis turpis. Quisque dignissim urna id nulla rhoncus, vel sodales tellus ornare. Morbi nisi ex, tempor nec risus tincidunt, vehicula hendrerit metus. 
+                        
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            </div>
+            
               {this.props.user && user._id !== this.props.user._id &&
-                <Button onClick={this.followUser}>Follow</Button>
-              }
+                <Button variant="warning" onClick={this.followUser}>Follow</Button>
+            }
 
           </div>
         )}

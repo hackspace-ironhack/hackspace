@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import { Route, Redirect, Switch } from "react-router-dom";
+import AnimatedText from "./components/AnimatedText";
 import Profile from "./components/Profile";
 import About from "./components/About";
 import Signup from "./components/Signup";
@@ -48,7 +49,8 @@ class App extends React.Component {
       <Switch>
         <Route
         exact path="/signup"
-        render={props => <Signup setUser={this.setUser} {...props} />}
+            render={props => <Signup setUser={this.setUser} {...props} />}
+          
         />
         <Route
         exact path="/login"
