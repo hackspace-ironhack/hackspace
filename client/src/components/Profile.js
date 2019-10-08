@@ -74,16 +74,16 @@ export default class Profile extends Component {
                   <Card.Body>
                     <Card.Title>{user.name}</Card.Title>
                     
-                    <Button variant="warning">Edit your profile</Button>
+                    <Button variant="warning" active>Edit your profile</Button>
                   </Card.Body>
                 </Card>
               </div>
               
             </div>
             <div className="profile-links">
-              <Button variant="secondary">Projects</Button>
-              <Button variant="secondary">To Do List</Button>
-              <Button variant="secondary">Friends</Button>
+              <Button variant="secondary" active>Projects</Button>
+              <Button variant="secondary" active>To Do List</Button>
+              <Button variant="secondary" active>Friends</Button>
             </div>
             <div className="profile-post">
             <Card border="warning">
@@ -95,7 +95,7 @@ export default class Profile extends Component {
                   <AddPost user={user} />
               }
                 </Card.Text>
-                <Button variant="warning">Publish</Button>
+                <Button variant="warning" active>Publish</Button>
               </Card.Body>
             </Card>
             
@@ -122,7 +122,7 @@ export default class Profile extends Component {
             </div>
             
               {this.props.user && user._id !== this.props.user._id &&
-                <Button variant="warning" onClick={this.followUser}>Follow</Button>
+                <Button variant="warning" onClick={this.followUser} active>Follow</Button>
             }
 
           </div>

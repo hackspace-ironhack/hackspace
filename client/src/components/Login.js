@@ -65,7 +65,7 @@ export default class Login extends Component {
           {this.state.message && (
             <Alert variant="danger">{this.state.message}</Alert>
           )}
-          <Button type="submit">Login</Button>
+          <Button variant="warning" type="submit">Login</Button>
         </Form>
       </>
     );

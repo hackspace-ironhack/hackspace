@@ -89,12 +89,12 @@ export default class Signup extends Component {
           {this.state.message && (
             <Alert variant="danger">{this.state.message}</Alert>
           )}
-          <Button variant="secondary" type="submit">Signup</Button>
+          <Button variant="warning" type="submit">Signup</Button>
           
         </Form>
           Already have an account?
           
-          <Button variant="secondary" type="submit">
+          <Button variant="warning" type="submit">
             <Link to = "/login">Login</Link></Button>
         </div>
         </div>

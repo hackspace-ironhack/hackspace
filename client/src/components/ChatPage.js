@@ -52,7 +52,7 @@ class ChatPage extends React.Component {
 
   render = () => {
     return (
-      <Container>
+      <Container className="chat-page-container">
         {this.state.messages.map((message) => 
           <Card key={message._id} className={this.props.user && this.props.user._id === message.from._id ? "text-right" : ""}>
             <Card.Body>
