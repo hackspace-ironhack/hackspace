@@ -7,7 +7,15 @@ const ObjectId = require('mongoose').Types.ObjectId;
 // get user by id to show as profile
 router.get('/:id', (req, res) => {
   User.findById(req.params.id)
-    .then(user => res.json(user));
+    .then(user => res.json(
+      {
+        username: user.username,
+        email:user.email,
+        name: user.name,
+        city: user.city,
+        skills: user.skills,
+        hobbies: user.hobbies,
+      }));
 });
 
 router.get('/', (req, res) => {

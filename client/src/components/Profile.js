@@ -36,6 +36,7 @@ export default class Profile extends Component {
   render = () => {
     // This choses between your own profile or someone elses.
     const user = this.userId !== undefined ? this.state.profile : this.props.user;
+    // if showing your own profile, it uses data from the props
     return (
       <div>
         {user && (

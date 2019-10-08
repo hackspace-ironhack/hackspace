@@ -38,10 +38,10 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.user === undefined) {
-      // redirects to signup if there is no user logged in
-      return <Redirect to="/signup" />
-    }
+    // if (this.state.user === undefined) {
+    //   // redirects to signup if there is no user logged in
+    //   return <Redirect to="/signup" />
+    // }
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
