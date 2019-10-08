@@ -73,7 +73,7 @@ export default class Signup extends Component {
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
-              id="username"
+              id="email"
             />
           </Form.Group>
           <Form.Group>
