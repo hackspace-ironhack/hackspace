@@ -34,7 +34,8 @@ class App extends React.Component {
   componentDidMount = () => {
     this.loadUser();
   }
-   loadUser = () => {
+  loadUser = () => {
+     console.log('calling from here');
     axios.get("/api/auth/loggedin").then(response => {
       const user = response.data;
       this.setUser(user);
