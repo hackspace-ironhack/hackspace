@@ -71,6 +71,9 @@ const Navigation = props => {
             //  LOGGED USER
             <>
               <Nav.Item>
+                <Link className="bar-links" to="/profile">Profile</Link>
+              </Nav.Item>
+              <Nav.Item>
                 <Link className="bar-links" to="/projects" onClick = {() =>handleProject(props)}>Projects</Link>
               </Nav.Item>
               <Nav.Item>
@@ -78,6 +81,9 @@ const Navigation = props => {
               </Nav.Item>
               <Nav.Item>
                 <Link className="bar-links" to="/todolist">Things to do</Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Link className="bar-links" to="/search">Find Users</Link>
               </Nav.Item>
               <Nav.Item>
               <Link className="bar-links" to="/" onClick={() => handleLogout(props)}> Logout </Link>

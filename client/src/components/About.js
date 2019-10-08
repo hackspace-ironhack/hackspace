@@ -42,8 +42,8 @@ export default class About extends Component{
             hobbies:""
           });
           // updating parent's component's state
-          //this.props.getData();
-          this.props.history.push("/profile")
+          this.props.loadUser();
+          this.props.history.push("/profile");
         })
         .catch(err => {
           console.log(err);

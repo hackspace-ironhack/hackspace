@@ -21,11 +21,12 @@ export default class Profile extends Component {
         this.loadData();
     }
 
-    loadData = () => {
-        if (this.userId !== undefined) {
-            console.log(this.userId);
-            axios.get(`/api/user/${this.userId}`).then(response => this.setState({profile: response.data}));
-        }
+  loadData = () => {
+      // only loads a different user if an id is passed in the url
+      if (this.userId !== undefined) {
+          console.log(this.userId);
+          axios.get(`/api/user/${this.userId}`).then(response => this.setState({profile: response.data}));
+      }
     }
 
     followUser = () => {
@@ -33,6 +34,7 @@ export default class Profile extends Component {
     }
 
   render = () => {
+    // This choses between your own profile or someone elses.
     const user = this.userId !== undefined ? this.state.profile : this.props.user;
     return (
       <div>
