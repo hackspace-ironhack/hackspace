@@ -28,6 +28,8 @@ render(){
   console.log("posts > ", this.state)
   return (
     <div className="post-container">
+      <h2>post</h2>
+
       <AddPost getData = {this.getData}/>
       <PostList posts = {this.state.posts}/>
     </div>

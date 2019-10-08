@@ -7,8 +7,7 @@ import About from "./components/About";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Post from "./components/Post";
-import Mywork from "./components/Mywork";
-
+import Portfolio from "./components/Portfolio";
 import ChatPage from "./components/ChatPage";
 import ChatList from "./components/ChatList";
 // import ToDoList from "./components/ToDoList";
@@ -31,11 +30,7 @@ class App extends React.Component {
     });
   };
 
-  // componentDidMount = () => {
-  //   this.loadUser()
-  // }
-
-  loadUser = () => {
+   loadUser = () => {
     axios.get("/api/auth/loggedin").then(response => {
       const user = response.data;
       this.setUser(user);
@@ -69,12 +64,12 @@ class App extends React.Component {
           />
       
         <Route
-            exact path="/profile"
-            render={props => <Profile {...props} user={this.state.user}/> }
+        exact path="/profile"
+        render={props => <Profile {...props} user={this.state.user}/> }
         />
         <Route
-         exact path="/mywork"
-         render={props => <Mywork user={this.state.user}/>}
+         exact path="/portfolio"
+         render={props => <Portfolio user={this.state.user}/>}
         />
         <Route
           exact path="/chat/:id"

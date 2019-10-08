@@ -28,8 +28,7 @@ export default class AddPost extends Component {
           this.setState({
             post: ""
           });
-          // updates the parent's component's state, which causes new props to be passed to the <ProjectList/> component
-          this.props.getData();
+        this.props.getData();
         })
         .catch(err => {
           console.log(err);
