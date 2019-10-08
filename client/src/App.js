@@ -22,7 +22,7 @@ import UploadProfilePic from "./components/UploadProfilePic";
 
 class App extends React.Component {
   state = {
-    user: this.props.user
+    user: undefined
   };
 
   setUser = user => {
