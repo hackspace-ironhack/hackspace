@@ -90,7 +90,7 @@ router.get("/loggedin", (req, res) => {
         hobbies: user.hobbies,
       });
   } else {
-    res.status = 401;
+    res.status(401);
     res.json({ error: 'Unauthorized' });
   }
 });
