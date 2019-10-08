@@ -1,14 +1,17 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import { Route, Redirect, Switch } from "react-router-dom";
+import AnimatedText from "./components/AnimatedText";
 import Profile from "./components/Profile";
 import About from "./components/About";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Post from "./components/Post";
+import Mywork from "./components/Mywork";
+
 import ChatPage from "./components/ChatPage";
 import ChatList from "./components/ChatList";
 // import ToDoList from "./components/ToDoList";
-import Post from "./components/Post";
 import SearchPage from "./components/SearchPage";
 
 import axios from "axios";
@@ -70,6 +73,10 @@ class App extends React.Component {
             render={props => <Profile {...props} user={this.state.user}/> }
         />
         <Route
+         exact path="/mywork"
+         render={props => <Mywork user={this.state.user}/>}
+        />
+        <Route
           exact path="/chat/:id"
           render={props => <ChatPage {...props} user={this.state.user}/>}
         />
@@ -78,6 +85,8 @@ class App extends React.Component {
           exact path="/chat"
           render={props => <ChatList user={this.state.user}/>}
         />
+
+
 
           {/* Route to search and list users with links to their profile */}
         <Route

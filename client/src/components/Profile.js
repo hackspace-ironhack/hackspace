@@ -7,7 +7,8 @@ import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
-import {Button} from 'react-bootstrap';
+
+import { Button, Card, Badge } from 'react-bootstrap';
 
 export default class Profile extends Component {
 
@@ -42,15 +43,32 @@ export default class Profile extends Component {
         {user && (
           
           <div>
-            <ul>
-              <li>Name: {user.name}</li>
-              <li>City: {user.city}</li>
-              <li>Skills: {user.skills}</li>
-              <li>Hobbies: {user.hobbies}</li>
-            </ul>
+            <div className="about-card">
+            <Card border = "dark" style = {{width:'18rem'}}>
+              <Card.Body>
+              <Card.Text>
+               <ul>
+                  <li>Name: {user.name}</li>
+                  <li>City: {user.city}</li>
+                  <li>Technical Skills: {user.skills}</li>
+                  <li>Interests: {user.hobbies}</li>
+               </ul>
+               </Card.Text>
+             </Card.Body>
+            </Card>
+            </div>
+            <div className="profile-post">
+              <Card border = "warning">
+                <Card.Body>
+                  <Card.Text>
               {this.props.user && user._id === this.props.user._id &&
                   <Post getData={this.loadData} user={user} />
               }
+                </Card.Text>
+                
+                </Card.Body>
+              </Card>
+               </div>
               {this.props.user && user._id !== this.props.user._id &&
                 <Button onClick={this.followUser}>Follow</Button>
               }
