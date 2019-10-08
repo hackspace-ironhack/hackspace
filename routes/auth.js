@@ -77,17 +77,22 @@ router.delete("/logout", (req, res) => {
 // checks if the user has an active session
 // GET /api/auth/loggedin
 router.get("/loggedin", (req, res) => {
-  const user = req.user;
-  res.json(
-    {
-      username: user.username,
-      _id: user._id,
-      email: user.email,
-      name: user.name,
-      city: user.city,
-      skills: user.skills,
-      hobbies: user.hobbies,
-    });
+  if (req.user) {
+    const user = req.user;
+    res.json(
+      {
+        username: user.username,
+        _id: user._id,
+        email: user.email,
+        name: user.name,
+        city: user.city,
+        skills: user.skills,
+        hobbies: user.hobbies,
+      });
+  } else {
+    res.status = 401;
+    res.json({ error: 'Unauthorized' });
+  }
 });
 
 module.exports = router;
