@@ -74,7 +74,7 @@ const Navigation = props => {
                 <Link className="bar-links" to="/profile">Profile</Link>
               </Nav.Item>
               <Nav.Item>
-                <Link className="bar-links" to="/projects" onClick = {() =>handleProject(props)}>Projects</Link>
+                <Link className="bar-links" to="/projects" onClick = {() =>handleProject(props)}>My Work</Link>
               </Nav.Item>
               <Nav.Item>
                 <Link className="bar-links" to="/chat">Chat</Link>

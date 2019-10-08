@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import About from "./About";
 import UploadImage from "./UploadImage";
-import AddPost from "./AddPost";
+import Post from "./Post";
 import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
@@ -40,6 +40,7 @@ export default class Profile extends Component {
     return (
       <div>
         {user && (
+          
           <div>
             <ul>
               <li>Name: {user.name}</li>
@@ -48,7 +49,7 @@ export default class Profile extends Component {
               <li>Hobbies: {user.hobbies}</li>
             </ul>
               {this.props.user && user._id === this.props.user._id &&
-                  <AddPost user={user} />
+                  <Post getData={this.loadData} user={user} />
               }
               {this.props.user && user._id !== this.props.user._id &&
                 <Button onClick={this.followUser}>Follow</Button>
