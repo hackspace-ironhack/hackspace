@@ -17,6 +17,7 @@ import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import UploadProfilePic from "./components/UploadProfilePic";
 
 
 class App extends React.Component {
@@ -85,7 +86,10 @@ class App extends React.Component {
           render={props => <ChatList user={this.state.user}/>}
         />
 
-
+       <Route
+          exact path="/userimage"
+          render={props => <UploadProfilePic/>}
+        />
 
           {/* Route to search and list users with links to their profile */}
         <Route

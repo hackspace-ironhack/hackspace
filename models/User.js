@@ -9,7 +9,9 @@ const userSchema = new Schema(
     name: String,
     city:String,
     skills:String,
-    hobbies:String
+    hobbies:String,
+    profilePicture:String,
+    uploadedImg:[]
   },
   {
     timestamps: true

@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import About from "./About";
-import UploadImage from "./UploadImage";
-import Post from "./Post";
 import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
-import PostList from "./PostList";
 import AddPost from "./AddPost";
-import placeHolder from "../images/profile-placeholder.jpeg";
+import PostList from "./PostList";
+import { Button, Card } from 'react-bootstrap';
+import UploadProfilePic from './UploadProfilePic';
 
-import { Button, Card, Badge } from 'react-bootstrap';
+import placeHolder from '../images/profile-placeholder.jpeg';
 
 export default class Profile extends Component {
 
@@ -49,6 +48,12 @@ export default class Profile extends Component {
     
   }
 
+    routeChange(){
+       let path = `newPath`;
+       this.props.history.push(path);
+
+    }
+
     followUser = () => {
         axios.post('/api/user/friends', {friend: this.userId})
     }
@@ -60,7 +65,6 @@ export default class Profile extends Component {
     return (
       <div>
         {user && (
-          
           <div>
             {/* <ul>
               <li>Name: {user.name}</li>
@@ -68,6 +72,9 @@ export default class Profile extends Component {
               <li>Skills: {user.skills}</li>
               <li>Hobbies: {user.hobbies}</li>
             </ul> */}
+            <div className="imagebox">
+              <UploadProfilePic user={this.props.user}/>
+            </div>
             <div className="profile-intro">
                 
                 <div className="about-card">
@@ -92,7 +99,7 @@ export default class Profile extends Component {
                   <Card.Body>
                     <Card.Title>{user.name}</Card.Title>
                     
-                    <Button variant="warning" active>Edit your profile</Button>
+                    <Button onClick = {this.routeChange} variant="warning" active>Edit your profile</Button>
                   </Card.Body>
                 </Card>
               </div>
@@ -119,6 +126,7 @@ export default class Profile extends Component {
               {this.props.user && user._id !== this.props.user._id &&
                 <Button variant="warning" onClick={this.followUser} active>Follow</Button>
             }
+                <UploadProfilePic/>
 
           </div>
         )}
