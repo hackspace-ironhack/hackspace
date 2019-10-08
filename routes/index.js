@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const User = require("../models/User")
 const Post = require("../models/Post")
-
+const uploader = require("./cloudinary")
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -51,7 +51,21 @@ router.get('/api/post/:owner',(req,res) =>{
   .catch(err=>console.log(err)) 
 })
 
+//PATCH image
+router.patch('/api/profilepicture/:id', uploader.single('photo'), (req, res, next) => {
+  //const { title, description } = req.body;
+  const id= req.param.id
+  const imgPath = req.file.url;
+  //const imgName = req.file.originalname;
 
+  User.findOneAndUpdate({_id:id},{profilePicture:imgPath})
+  .then(user => {
+    res.status(200).json({message:"updated image"});
+  })
+  .catch(error => {
+    console.log(error);
+  })
+});), 
 
 
 

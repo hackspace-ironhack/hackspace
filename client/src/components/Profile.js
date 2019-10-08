@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from "react-router-dom";
 import About from "./About";
-import UploadImage from "./UploadImage";
+// import UploadImage from "./UploadImage";
 import AddPost from "./AddPost";
 import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
@@ -34,15 +34,26 @@ export default class Profile extends Component {
   render() {
     return (
       <div>
-
-        hobbies {this.state.profile.hobbies}
-        <FaceRecognition />
-        {/* <About getData={this.getData}/> */}
+        <ul>
+          <li>
+            Name: {this.state.profile.name}
+          </li>
+          <li>
+            City: {this.state.profile.city}
+          </li>
+          <li>
+            Skills: {this.state.profile.skills}
+          </li>
+          <li>
+            Hobbies: {this.state.profile.hobbies}
+          </li>
+        </ul>
         {/* <UploadImage/> */}
-        {/* <AddPost/> 
-       <Likebutton/>
-       <ToDoList/> */}
+        <AddPost user={this.state.profile} />
+        {/* <AddProject/>  */}
 
+        {/* <Likebutton/> */}
+        <ToDoList/>
       </div>
     );
 
