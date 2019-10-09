@@ -4,7 +4,6 @@ import About from "./About";
 import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
-import ToDoList from "./ToDoList";
 import Post from "./Post";
 import PostList from "./PostList";
 import { Button, Card } from 'react-bootstrap';
@@ -85,8 +84,9 @@ export default class Profile extends Component {
                       <Card.Text>
                         <ul>
                           <li>City: {user.city}</li>
-                          <li>Skills: {user.skills}</li>
-                          <li>Hobbies: {user.hobbies}</li>
+                          <li>Technical Skills: {user.skills}</li>
+                          <li>Interests: {user.hobbies}</li>
+
                         </ul>
                       </Card.Text>
                     </Card.Body>
@@ -106,9 +106,9 @@ export default class Profile extends Component {
               
             </div>
             <div className="profile-links">
-              <Button variant="secondary" active>Projects</Button>
-              <Button variant="secondary" active>To Do List</Button>
-              <Button variant="secondary" active>Friends</Button>
+              <Button variant="secondary" active>Portfolio</Button>
+              <Button variant="secondary" active>Scheduler</Button>
+              <Button variant="secondary" active>Find Friends</Button>
             </div>
             {/* calling the "post" component */}
             <div className="profile-post">

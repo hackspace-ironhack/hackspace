@@ -11,7 +11,7 @@ const PostList = props => {
       {!props.posts ? "" : props.posts.map((obj,i) => {
         return (
           <Card border="light">
-              <Card.Header>Posted by {props.user.name} on 01/01/01.</Card.Header>
+              <Card.Header>Posted by {props.user.name} on {Date()}.</Card.Header>
               <Card.Body>
                 <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
                 <Card.Text>

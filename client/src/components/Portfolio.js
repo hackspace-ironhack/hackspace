@@ -31,7 +31,7 @@ export default class portfolio extends Component {
 render () {
   return (
     <div className="portfolioContainer">
-      <h2>projects</h2>
+      <h2>portfolio</h2>
       <AddProject getData={this.getData}/>
       {/* <ProjectList portfolio={this.state.portfolio} /> */}
     </div>

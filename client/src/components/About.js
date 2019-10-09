@@ -69,7 +69,7 @@ export default class About extends Component{
               type="text"
               name="city"
               id="city"
-              value={this.state.description}
+              value={this.state.city}
             />
           </Form.Group>
           <Form.Group>

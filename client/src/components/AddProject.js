@@ -21,13 +21,13 @@ export default class AddProject extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    // http://localhost:5555/api/profile
+    // http://localhost:5555/api/portfolio
     axios
-      .post("/api/portfolio", {
+      .post("/api/portfolio/${this.props.user._id}", {
         title: this.state.title,
         tools: this.state.tools,
         description: this.state.description,
-        link: this.state.link,
+        link: this.state.link
       })
       .then(() => {
         this.setState({
@@ -36,7 +36,8 @@ export default class AddProject extends Component {
           description: "",
           link:""
         });
-        this.props.getData();
+        // this.props.getData();
+        this.props.history.push("/portfolio");
       })
       .catch(err => {
         console.log(err);
@@ -51,9 +52,9 @@ export default class AddProject extends Component {
               <Form.Control
               type="text"
               onChange={this.handleChange}
-              id="post"
-              name="post"
-              value={this.state.post}
+              id="title"
+              name="title"
+              value={this.state.title}
             />
             </Form.Group>
 
@@ -62,9 +63,9 @@ export default class AddProject extends Component {
               <Form.Control
               type="text"
               onChange={this.handleChange}
-              id="post"
-              name="post"
-              value={this.state.post}
+              id="tools"
+              name="tools"
+              value={this.state.tools}
             />
             </Form.Group>
 
@@ -73,9 +74,9 @@ export default class AddProject extends Component {
               <Form.Control
               type="text"
               onChange={this.handleChange}
-              id="post"
-              name="post"
-              value={this.state.post}
+              id="description"
+              name="description"
+              value={this.state.description}
             />
             </Form.Group>
 
@@ -84,9 +85,9 @@ export default class AddProject extends Component {
               <Form.Control
               type="text"
               onChange={this.handleChange}
-              id="post"
-              name="post"
-              value={this.state.post}
+              id="link"
+              name="link"
+              value={this.state.link}
             />
             </Form.Group>
           <Button type="submit">Add to your Portfolio</Button>
