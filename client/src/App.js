@@ -10,6 +10,7 @@ import Post from "./components/Post";
 import Portfolio from "./components/Portfolio";
 import ChatPage from "./components/ChatPage";
 import ChatList from "./components/ChatList";
+import Footer from "./components/Footer";
 // import ToDoList from "./components/ToDoList";
 import SearchPage from "./components/SearchPage";
 
@@ -99,6 +100,7 @@ class App extends React.Component {
             render={props => <SearchPage user={this.state.user}/>}
         />
         </Switch>
+        <Footer/>
       </div>
     );
   }

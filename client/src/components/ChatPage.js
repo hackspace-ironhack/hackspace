@@ -53,8 +53,14 @@ class ChatPage extends React.Component {
   render = () => {
     return (
       <Container className="chat-page-container">
+          <Card bg="warning">
+          <Card.Header>
+            Chat with: 
+          </Card.Header>
+          </Card>
+        
         {this.state.messages.map((message) => 
-          <Card key={message._id} className={this.props.user && this.props.user._id === message.from._id ? "text-right" : ""}>
+          <Card key={message._id} className={this.props.user && this.props.user._id === message.from._id ? "text-right border-secondary" : ""}>
             <Card.Body>
               <Card.Title>
                 {message.from.username}
