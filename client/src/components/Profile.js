@@ -1,33 +1,57 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import About from "./About";
-import UploadImage from "./UploadImage";
-import Post from "./Post";
 import AddProject from "./AddProject";
 import Likebutton from "./Likebutton";
 import axios from "axios";
 import ToDoList from "./ToDoList";
+import Post from "./Post";
+import PostList from "./PostList";
+import { Button, Card } from 'react-bootstrap';
+import UploadProfilePic from './UploadProfilePic';
 
-import { Button, Card, Badge } from 'react-bootstrap';
+import placeHolder from '../images/profile-placeholder.jpeg';
 
 export default class Profile extends Component {
 
     state = {
-        profile: {}
+      profile: {},
+      posts: []
     }
 
     userId = this.props.match.params.id;
 
     componentDidMount = () => {
-        this.loadData();
+      this.loadProfile();
+      this.loadPosts();
     }
 
-  loadData = () => {
+  loadProfile = () => {
       // only loads a different user if an id is passed in the url
       if (this.userId !== undefined) {
           console.log(this.userId);
-          axios.get(`/api/user/${this.userId}`).then(response => this.setState({profile: response.data}));
+        axios.get(`/api/user/${this.userId}`)
+          .then(response => this.setState({ profile: response.data }));
       }
+  }
+  
+  loadPosts = () => {
+      axios.get("/api/post")
+      .then (response => {
+        this.setState({
+          posts: response.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    
+  }
+
+    routeChange(){
+       let path = `newPath`;
+       this.props.history.push(path);
+
     }
 
     followUser = () => {
@@ -41,21 +65,50 @@ export default class Profile extends Component {
     return (
       <div>
         {user && (
-          
           <div>
-            <div className="about-card">
-            <Card border = "dark" style = {{width:'18rem'}}>
-              <Card.Body>
-              <Card.Text>
-               <ul>
-                  <li>Name: {user.name}</li>
-                  <li>City: {user.city}</li>
-                  <li>Technical Skills: {user.skills}</li>
-                  <li>Interests: {user.hobbies}</li>
-               </ul>
-               </Card.Text>
-             </Card.Body>
-            </Card>
+            {/* <ul>
+              <li>Name: {user.name}</li>
+              <li>City: {user.city}</li>
+              <li>Skills: {user.skills}</li>
+              <li>Hobbies: {user.hobbies}</li>
+            </ul> */}
+            <div className="imagebox">
+              <UploadProfilePic user={this.props.user}/>
+            </div>
+            <div className="profile-intro">
+                
+                <div className="about-card">
+                  <Card border="dark" style={{ width: '18rem' }}>
+                    <Card.Header>About</Card.Header>
+                    <Card.Body>
+                      {/* <Card.Title>About:</Card.Title> */}
+                      <Card.Text>
+                        <ul>
+                          <li>City: {user.city}</li>
+                          <li>Skills: {user.skills}</li>
+                          <li>Hobbies: {user.hobbies}</li>
+                        </ul>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+              </div>
+              
+              <div className="profile-picture-card">
+                <Card border="dark" style={{ width: '18rem' }}>
+                  <Card.Img variant="top" src={placeHolder} />
+                  <Card.Body>
+                    <Card.Title>{user.name}</Card.Title>
+                    
+                    <Button onClick = {this.routeChange} variant="warning" active>Edit your profile</Button>
+                  </Card.Body>
+                </Card>
+              </div>
+              
+            </div>
+            <div className="profile-links">
+              <Button variant="secondary" active>Projects</Button>
+              <Button variant="secondary" active>To Do List</Button>
+              <Button variant="secondary" active>Friends</Button>
             </div>
             {/* calling the "post" component */}
             <div className="profile-post">
@@ -69,10 +122,13 @@ export default class Profile extends Component {
                 </Card.Text>
                 </Card.Body>
               </Card>
+              <PostList posts={this.state.posts} user={this.props.user}/>
+          
                </div>
               {this.props.user && user._id !== this.props.user._id &&
-                <Button onClick={this.followUser}>Follow</Button>
-              }
+                <Button variant="warning" onClick={this.followUser} active>Follow</Button>
+            }
+                <UploadProfilePic/>
 
           </div>
         )}

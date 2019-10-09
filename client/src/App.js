@@ -17,11 +17,12 @@ import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+import UploadProfilePic from "./components/UploadProfilePic";
 
 
 class App extends React.Component {
   state = {
-    user: this.props.user
+    user: undefined
   };
 
   setUser = user => {
@@ -30,10 +31,15 @@ class App extends React.Component {
     });
   };
 
-   loadUser = () => {
+  componentDidMount = () => {
+    this.loadUser();
+  }
+  loadUser = () => {
     axios.get("/api/auth/loggedin").then(response => {
       const user = response.data;
       this.setUser(user);
+    }).catch((error) => {
+      this.setUser(null);
     });
   }
 
@@ -59,10 +65,11 @@ class App extends React.Component {
 
         {/* Route to show another person's profile */}
         <Route
-          exact path="/posts"
+          exact path="/profile/:id"
           render={props => <Profile {...props} user={this.state.user}/> }
           />
       
+          {/* Route to show your own profile */}
         <Route
         exact path="/profile"
         render={props => <Profile {...props} user={this.state.user}/> }
@@ -81,7 +88,10 @@ class App extends React.Component {
           render={props => <ChatList user={this.state.user}/>}
         />
 
-
+       <Route
+          exact path="/userimage"
+          render={props => <UploadProfilePic/>}
+        />
 
           {/* Route to search and list users with links to their profile */}
         <Route

@@ -127,5 +127,26 @@ h2 {
 /* PROFILE PAGE */
 
 .profile-intro {
-  display: flex
+  display: flex;
+  justify-content: space-around;
+  padding: 2em;
+}
+
+/* CHAT LIST/CONTACT PAGE */
+
+.contact-list {
+  padding: 2em;
+}
+
+
+/* CHAT/MESSAGES PAGE */
+
+.chat-page-container {
+display: flex;
+flex-direction: column;
+}
+
+.chat-page-container form {
+  margin: 0;
+  max-width: 100vw;
 }

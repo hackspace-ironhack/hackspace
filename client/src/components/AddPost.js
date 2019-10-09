@@ -48,7 +48,7 @@ export default class AddPost extends Component {
               value={this.state.post}
             />
             </Form.Group>
-          <Button type="submit">Post your thought</Button>
+          <Button variant="warning" active type="submit">Post your thought</Button>
         </Form>
       );
     }

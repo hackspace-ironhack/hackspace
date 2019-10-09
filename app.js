@@ -18,7 +18,7 @@ const passport = require("passport");
 require("./configs/passport");
 
 mongoose
-  .connect("mongodb://localhost/project3", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {
@@ -56,6 +56,7 @@ app.use(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, process.env.STATIC_FOLDER)));
 
 // 
 
@@ -97,5 +98,9 @@ app.use("/api/chat", chatRoutes);
 // user
 const userRoutes = require("./routes/user");
 app.use("/api/user", userRoutes);
+
+app.use((req, res) => {
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;
