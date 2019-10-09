@@ -62,6 +62,13 @@ h2 {
   flex: 1;
 }
 
+/* NAVBAR */
+.navbar-logo {
+  width: 8vw;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important; 
+}
+
 /* FOOTER */
 .footer-container {
 font-size: 0.7rem;
@@ -101,6 +108,7 @@ margin-top: 1rem;
 .bar-links{
   color: #f4f4f4;
   cursor: pointer !important;
+  
 }
 
 

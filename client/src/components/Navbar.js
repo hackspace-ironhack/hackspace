@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav} from "react-bootstrap";
+import { Navbar, Nav, Image} from "react-bootstrap";
 import { logout } from "../services/api";
+import logo from "../images/logo-gray(1).png"
 
 const handleLogout = props => {
   logout().then(() => {
@@ -19,7 +20,7 @@ const handleProject = props => {
 const Navigation = props => {
   return (
   <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-  <Navbar.Brand href="/">Hackspace</Navbar.Brand>
+  <Navbar.Brand href="/"><Image className="navbar-logo" src={logo}/></Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -33,13 +34,10 @@ const Navigation = props => {
                 <Link className="bar-links" to="/profile">Profile</Link>
               </Nav.Item>
               <Nav.Item>
-                <Link className="bar-links" to="/portfolio" onClick = {() =>handleProject(props)}>My Portfolio</Link>
+                <Link className="bar-links" to="/portfolio">Portfolio</Link>
               </Nav.Item>
               <Nav.Item>
                 <Link className="bar-links" to="/chat">Chat</Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link className="bar-links" to="/todolist">Things to do</Link>
               </Nav.Item>
               <Nav.Item>
                 <Link className="bar-links" to="/search">Find Users</Link>
