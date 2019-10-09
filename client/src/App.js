@@ -10,7 +10,6 @@ import Post from "./components/Post";
 import Portfolio from "./components/Portfolio";
 import ChatPage from "./components/ChatPage";
 import ChatList from "./components/ChatList";
-// import ToDoList from "./components/ToDoList";
 import SearchPage from "./components/SearchPage";
 
 import axios from "axios";
@@ -76,7 +75,7 @@ class App extends React.Component {
         />
         <Route
          exact path="/portfolio"
-         render={props => <Portfolio user={this.state.user}/>}
+         render={props => <Portfolio {...props} user={this.state.user}/>}
         />
         <Route
           exact path="/chat/:id"

@@ -115,7 +115,7 @@ export default class Profile extends Component {
               <Card border = "warning">
                 <Card.Body>
                   <Card.Text>
-                    <Card.Header> Posted by: {user.name} on DAte</Card.Header>
+                    <Card.Header> Posted by: {user.name} on Date</Card.Header>
               {this.props.user && user._id === this.props.user._id &&
                   <Post getData={this.loadData} user={user} />
               }

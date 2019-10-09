@@ -1,25 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const Portfolio = require("../models/Portfolio");
-const Task = require("../models/Task");
- 
+const User = require("../models/User");
+
 // POST /api/portfolio
 // create a new `portfolio` resource
-router.post("/", (req, res) => {
+router.post("/:id", (req, res) => {
   // const { title, description, tasks = [] } = req.body;
-  const title = req.body.title;
-  const tools = req.body.tools;
-  const links = req.body.links;
-  const description = req.body.description;
-  const tasks = [];
-  const owner = req.user._id;
+  const {title, tools, description, link} = req.body;
+  const owner = req.params.id;
 
   Portfolio.create({
     title: title,
     tools: tools,
     description: description,
     link:link,
-    tasks: tasks,
+    // tasks: tasks,
     owner: owner
   })
     .then(portfolio => {
@@ -34,7 +30,7 @@ router.post("/", (req, res) => {
 // returns a list of all projects
 router.get("/", (req, res) => {
   Portfolio.find()
-    .populate("tasks")
+    .populate("owner")
     .then(portfolio => {
       res.json(portfolio);
     })
@@ -43,12 +39,12 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET /api/portfolio/:id
-// return a specific `portfolio` resource with a given id
-router.get("/:id", (req, res) => {
+// GET /api/portfolio/:userid
+router.get("/:userid", (req, res) => {
   // check if req.params.id is valid, if not respond with a 4xx status code
-  Portfolio.findById(req.params.id)
-    .populate("tasks")
+  const userid = req.params.userid
+  Portfolio.find({owner:userid})
+    .populate("owner")
     .then(portfolio => {
         res.json(portfolio);
       })
@@ -75,19 +71,5 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// DELETE /api/projects/:id
-router.delete("/:id", (req, res) => {
-  // delete the project
-  Portfolio.findByIdAndDelete(req.params.id)
-    .then(portfolio => {
-      // Deletes all the documents in the Task collection where the value for the `_id` field is present in the `project.tasks` array
-      return Task.deleteMany({ _id: { $in: portfolio.tasks } }).then(() => {
-        res.json({ message: "ok" });
-      });
-    })
-    .catch(err => {
-      res.json(err);
-    });
-});
 
 module.exports = router;

@@ -23,7 +23,7 @@ export default class AddProject extends Component {
 
     // http://localhost:5555/api/portfolio
     axios
-      .post("/api/portfolio/${this.props.user._id}", {
+      .post(`/api/portfolio/${this.props.user._id}`, {
         title: this.state.title,
         tools: this.state.tools,
         description: this.state.description,
