@@ -43,6 +43,7 @@ export default class Profile extends Component {
     }
 
   render = () => {
+    console.log(this.props.user)
     // Choses between your own profile or someone elses.
     const user = this.userId !== undefined ? this.state.profile : this.props.user;
     // if showing your own profile, it uses data from the props
@@ -50,6 +51,7 @@ export default class Profile extends Component {
       <div>
         {user && (
           <div>
+         
             {/* <ul>
               <li>Name: {user.name}</li>
               <li>City: {user.city}</li>
@@ -79,7 +81,7 @@ export default class Profile extends Component {
               
               <div className="profile-picture-card">
                 <Card border="dark" style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={placeHolder} />
+                  <Card.Img variant="top" src={user.profilePicture} />
                   <Card.Body>
                     <Card.Title>{user.name}</Card.Title>
                     

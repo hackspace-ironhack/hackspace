@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/User");
 const Post = require("../models/Post");
+
 const uploader = require("../configs/cloudinary");
 const multer = require('multer');
-
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -53,7 +53,24 @@ router.get('/api/post/:owner', (req, res) => {
     .catch(err => console.log(err))
 })
 
+//PATCH image
 
+router.post("/add/image", uploader.single("profilePicture"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded"));
+    return
+  }
+
+  res.json({ secure_url: req.file.secure_url })
+})
+
+
+router.post("/api/profilePicture/:id", (req, res) => {
+  // see how to return the updated user
+  User.findByIdAndUpdate(req.params.id, { profilePicture: req.body.profilePicture }).then((user) => {
+    res.json(user)
+  })
+})
 
 
 

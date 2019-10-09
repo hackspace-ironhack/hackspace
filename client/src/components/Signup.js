@@ -3,7 +3,7 @@ import { Form, Button, Alert } from "react-bootstrap";
 import { signup } from "../services/api";
 import { Link } from "react-router-dom";
 
-const ReactRotatingText = require('react-rotating-text');
+// const ReactRotatingText = require('react-rotating-text');
 
 export default class Signup extends Component {
   state = {
@@ -99,10 +99,10 @@ export default class Signup extends Component {
           <Button variant="secondary" type="submit">
               <Link to="/login">Login</Link></Button>
           </div>
-          <div class="social">
+          {/* <div class="social">
             <a href="/google"><i class="fab fa-google fa-3x"></i></a>
             <a href="/github"><i class="fab fa-github fa-3x"></i></a>
-          </div>
+          </div> */}
         </div>
       </>
     );

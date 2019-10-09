@@ -31,15 +31,19 @@ export default class UploadProfilePic
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name, file, profilePicture } = this.state;
-    axios.post(`/api/profilepicture/${this.props.user._id}`, this.state)
-      .then(console.log("Image Changed"))
+    console.log("submit")
+    const { name, profilePicture } = this.state;
+    axios.post(`/api/profilePicture/${this.props.user._id}`, this.state)
+      .then((response) => {
+        // update the user and re-render the Profile
+        console.log("Image Changed", response)
+      })
       .catch(err => console.log(err))
   };
 
   render() {
-    console.log("State: ",this.state)
-    console.log("Props: ",this.props)
+    console.log("State: ", this.state)
+    console.log("Props: ", this.props)
     return (
       <div>
         <section>
