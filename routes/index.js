@@ -5,6 +5,7 @@ const Post = require("../models/Post");
 const uploader = require("../configs/cloudinary");
 const multer = require('multer');
 
+
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -69,9 +70,9 @@ router.post("/api/profilepicture/:id", (req, res) => {
   User.findByIdAndUpdate(req.params.id)
 })
 
-// router.patch('/api/profilepicture/:id', uploader.single('photo'), (req, res, next) => {
+// router.patch('/api/profilepicture/:id', uploader.single('photo'), (req, file, next) => {
 //   const id = req.params.id
-//   console.log(req)
+//   console.log(file)
 // if (req.file) {
 //   const imgPath = req.file.url;
 //   //const imgName = req.file.originalname;

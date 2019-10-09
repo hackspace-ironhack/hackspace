@@ -70,7 +70,7 @@ export default class Profile extends Component {
                         <ul>
                           <li>City: {user.city}</li>
                           <li>Skills: {user.skills}</li>
-                          <li>Hobbies: {user.hobbies}</li>
+                          <li>Interests: {user.hobbies}</li>
                         </ul>
                       </Card.Text>
                     </Card.Body>
