@@ -1,12 +1,14 @@
 require("dotenv").config();
-
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const express = require("express");
+//asked for but dont have here:
+//serve favicon
+//morgan
+const bodyParser = require("body-parser");//
+const cookieParser = require("cookie-parser");//
+const express = require("express"); //
 const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const path = require("path");
+const path = require("path");//
 
 // WHEN INTRODUCING USERS DO THIS:
 // INSTALL THESE DEPENDENCIES: passport-local, passport, bcrypt, express-session
@@ -14,6 +16,8 @@ const path = require("path");
 
 const session = require("express-session");
 const passport = require("passport");
+// for scheduler 
+
 
 require("./configs/passport");
 
@@ -38,10 +42,10 @@ const debug = require("debug")(
 const app = express();
 
 // Middleware Setup
-app.use(logger("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(logger("dev")); //
+app.use(bodyParser.json());//
+app.use(bodyParser.urlencoded({ extended: false }));//
+app.use(cookieParser());//
 
 // Express View engine setup
 
@@ -77,6 +81,8 @@ app.use(passport.session());
 app.locals.title = "HackSpace";
 
 // 
+
+// var users = require ('./routes/users');
 
 const index = require("./routes/index");
 app.use("/", index);

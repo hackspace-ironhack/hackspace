@@ -82,6 +82,11 @@ class App extends React.Component {
           render={props => <ChatPage {...props} user={this.state.user}/>}
         />
 
+        {/* <Route
+          exact path="/scheduler"
+          render={props => <Schedule {...props} user={this.state.user}/>}
+        /> */}
+
         <Route
           exact path="/chat"
           render={props => <ChatList user={this.state.user}/>}
