@@ -1,28 +1,34 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import {Card} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 
-const PostList = props => {
-  
-  return (
-    <div>
-      {/* {!props.posts ? "" :  <h2>My Posts</h2>} */}
+class PostList extends React.Component {
 
-      {!props.posts ? "" : props.posts.map((obj,i) => {
-        return (
-          <Card border="light">
-              <Card.Header>Posted by {props.user.name} on {Date()}.</Card.Header>
-              <Card.Body>
-                <Card.Title>PLACE HOLDER FOR POSTs</Card.Title>
-                <Card.Text>
-                {obj.post}
-                </Card.Text>
-              </Card.Body>
-              </Card>
-        );
-      })}
-    </div>
-  );
+  handleClick = (event) => {
+    this.props.handleLike(event.target.value);
+  };
+
+  render = () => {
+    return (
+        <div>
+          {this.props.posts.map(item => {
+            return (
+                <Card border="light">
+                  <Card.Header>Posted by {item.owner.name} on {new Date(item.postedOn).toLocaleDateString()}.</Card.Header>
+                  <Card.Body>
+                    <Card.Text>
+                      {item.post}
+                    </Card.Text>
+                    <Button variant="warning" active value={item._id} onClick={this.handleClick}>{item.likes.length} {item.likes.length !== 1 ? "Like" : "Likes"}</Button>
+                  </Card.Body>
+                </Card>
+            );
+          })}
+        </div>
+    );
+  }
+
 };
 
 export default PostList;

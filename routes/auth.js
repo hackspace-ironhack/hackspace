@@ -28,7 +28,7 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
 
-      return User.create({ username: username, password: hash, email:email }).then(
+      return User.create({ username: username, password: hash, email: email }).then(
         dbUser => {
           // Login the user on signup
 
@@ -77,8 +77,8 @@ router.delete("/logout", (req, res) => {
 // checks if the user has an active session
 // GET /api/auth/loggedin
 router.get("/loggedin", (req, res) => {
-  if (req.user) {
     const user = req.user;
+  if (user) {
     res.json(
       {
         username: user.username,
@@ -88,6 +88,7 @@ router.get("/loggedin", (req, res) => {
         city: user.city,
         skills: user.skills,
         hobbies: user.hobbies,
+        profilePicture: user.profilePicture
       });
   } else {
     res.status(401);

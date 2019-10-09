@@ -1,8 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Khula:700);
-
 body {
   background-color: #f4f4f4;
-  /* min-height: 100%; */
+  font-family: 'Titillium Web', sans-serif;
+  /* font-family: 'Rubik', sans-serif; */
 }
 
 /* .App {
@@ -119,7 +118,7 @@ margin-top: 1rem;
     min-height: 87vh;
     padding: 2em;
   }
-  
+
 
 
 /* HOME - LOGGED */

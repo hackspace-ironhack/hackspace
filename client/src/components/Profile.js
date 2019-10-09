@@ -13,6 +13,7 @@ import UploadProfilePic from './UploadProfilePic';
 import placeHolder from '../images/profile-placeholder.jpeg';
 
 
+
 export default class Profile extends Component {
 
     state = {
@@ -20,33 +21,41 @@ export default class Profile extends Component {
       posts: []
     }
 
-    userId = this.props.match.params.id;
-
     componentDidMount = () => {
       this.loadProfile();
       this.loadPosts();
     }
 
+    handleLike = (postId) => {
+        axios.post(`/api/post/like/${postId}`).then(response => {
+            this.loadPosts();
+        }).catch(() => {/* do nothing */})
+    }
+
   loadProfile = () => {
       // only loads a different user if an id is passed in the url
-      if (this.userId !== undefined) {
-          console.log(this.userId);
-        axios.get(`/api/user/${this.userId}`)
+      const userId = this.props.match.params.id;
+      if (userId !== undefined) {
+        axios.get(`/api/user/${userId}`)
           .then(response => this.setState({ profile: response.data }));
       }
   }
-  
+
   loadPosts = () => {
-      axios.get("/api/post")
-      .then (response => {
-        this.setState({
-          posts: response.data
+        const userId = this.props.match.params.id;
+        let request;
+        if (userId !== undefined) {
+            request = axios.get(`/api/post/owner/${userId}`)
+        } else {
+            request = axios.get("/api/post")
+        }
+        request.then(response => {
+            this.setState({
+              posts: response.data
+            });
+        }).catch(err => {
+            console.log(err);
         });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    
   }
 
     routeChange(){
@@ -56,28 +65,32 @@ export default class Profile extends Component {
     }
 
     followUser = () => {
-        axios.post('/api/user/friends', {friend: this.userId})
+        const userId = this.props.match.params.id;
+        axios.post('/api/user/friends', {friend: userId})
     }
 
   render = () => {
+    console.log(this.props.user)
     // Choses between your own profile or someone elses.
-    const user = this.userId !== undefined ? this.state.profile : this.props.user;
+    const userId = this.props.match.params.id;
+
+    const user = userId !== undefined ? this.state.profile : this.props.user;
     // if showing your own profile, it uses data from the props
     return (
       <div className="profile-container">
-        
+
         {user && (
           <div>
-            {/* <div className="imagebox">
+            <div className="imagebox">
               <UploadProfilePic user={this.props.user}/>
-            </div> */}
+            </div>
             <div className="profile-intro">
                 {/* <Container>
                 <Row>
                   <Col lg={4} md={{span:12, order: 2}} sm={{span:12, order: 2}} xl={{span:12, order: 2}}> */}
               <div className="about-card">
-                
-                  
+
+
                   <Card border="dark" style={{ width: '60vw' }}>
                     <Card.Header>About</Card.Header>
                     <Card.Body>
@@ -87,27 +100,26 @@ export default class Profile extends Component {
                           <li>City: {user.city}</li>
                           <li>Technical Skills: {user.skills}</li>
                           <li>Interests: {user.hobbies}</li>
-
                         </ul>
                       </Card.Text>
                     </Card.Body>
                       </Card>
-                      
-                  
+
+
               </div>
                   {/* </Col>
                   <Col lg={5} md={{span:12, order: 1}} sm={{span:12, order: 1}} xl={{span:12, order: 1}}> */}
               <div className="profile-picture-card">
                 <Card border="dark" style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={placeHolder} />
+                  <Card.Img variant="top" src={user.profilePicture || placeHolder} />
                   <Card.Body>
                     <Card.Title>{user.name}</Card.Title>
-                    
-                    <Button onClick={this.routeChange} variant="warning" active>Edit your profile</Button>
-
                     {this.props.user && user._id !== this.props.user._id &&
-                <Button variant="warning" onClick={this.followUser} active>Follow</Button>
-            }
+                        <Button variant="warning" onClick={this.followUser} active>Follow</Button>
+                    }
+                    {this.props.user && user._id === this.props.user._id &&
+                        <Button variant="warning" active as={Link} to="/about">Edit your profile</Button>
+                    }
                   </Card.Body>
                 </Card>
                     </div>
@@ -121,23 +133,25 @@ export default class Profile extends Component {
                   <Button variant="secondary" active>Contacts</Button>
                 </div>
                 {/* calling the "post" component */}
+                {this.props.user && user._id === this.props.user._id &&
                 <div className="profile-post">
                   <Card border = "warning" className="post-card">
                     <Card.Body>
                       <Card.Text>
-                  {this.props.user && user._id === this.props.user._id &&
+
                       <AddPost user={user} />
-                  }
+
                     </Card.Text>
                     </Card.Body>
                   </Card>
                   <Card>
                     <PostList posts={this.state.posts} user={this.props.user} />
                   </Card>
-                  
-              
+
+
                 </div>
-              </div>  
+                }
+              </div>
                 {/* <UploadProfilePic/> */}
 
           </div>

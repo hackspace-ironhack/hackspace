@@ -6,12 +6,10 @@ import Profile from "./components/Profile";
 import About from "./components/About";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import Post from "./components/Post";
 import Portfolio from "./components/Portfolio";
 import ChatPage from "./components/ChatPage";
 import ChatList from "./components/ChatList";
 import Footer from "./components/Footer";
-// import ToDoList from "./components/ToDoList";
 import SearchPage from "./components/SearchPage";
 
 import axios from "axios";
@@ -45,7 +43,6 @@ class App extends React.Component {
   }
 
   render() {
-    
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />

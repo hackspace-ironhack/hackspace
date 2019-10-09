@@ -32,16 +32,6 @@ router.get('/api/about/:id', (req, res) => {
     .catch(err => console.log(err))
 })
 
-//POST api/profile
-router.post('/api/post', (req, res) => {
-  const { post, owner } = req.body;
-  Post.create({ post, owner })
-    .then(post => {
-      res.json(post)
-    })
-    .catch(err => console.log(err))
-})
-
 router.get('/api/post/:owner', (req, res) => {
   const owner = req.params.owner;
   Post.find({ owner: owner })
@@ -64,32 +54,12 @@ router.post("/add/image", uploader.single("profilePicture"), (req, res, next) =>
 })
 
 
-router.post("/api/profilepicture/:id", (req, res) => {
-  console.log(req.body);
-  User.findByIdAndUpdate(req.params.id, { profilePicture: req.body.profilepicture })
-    .then(error => res.json({ success: true }));
+router.post("/api/profilePicture/:id", (req, res) => {
+  // see how to return the updated user
+  User.findByIdAndUpdate(req.params.id, { profilePicture: req.body.profilePicture }).then((user) => {
+    res.json(user)
+  })
 })
-
-// router.patch('/api/profilepicture/:id', uploader.single('photo'), (req, res, next) => {
-//   const id = req.params.id
-//   console.log(req)
-// if (req.file) {
-//   const imgPath = req.file.url;
-//   //const imgName = req.file.originalname;
-//   console.log("img", imgPath, "id", id)
-//   User.findOneAndUpdate({ _id: id }, { profilePicture: imgPath })
-//     .then(user => {
-//       res.status(200).json({ message: "updated image" });
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     })
-// } else {
-//   console.log("no file")
-// }
-
-
-// });
 
 
 

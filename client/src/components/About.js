@@ -6,7 +6,7 @@ import { Form, Button } from "react-bootstrap";
 
 
 
-export default class About extends Component{
+export default class About extends Component {
      state = {
        name:"",
        city:"",
