@@ -21,9 +21,9 @@ class ChatList extends React.Component {
 
   render = () => {
     return (
-      <Container className="contact-list" >
-        <ListGroup border="warning">
-        <Card.Header className="bg-secondary text-white">Contact List</Card.Header>
+      <Container className="contact-list-container" >
+        <ListGroup >
+        <Card.Header className="bg-warning">Contact List</Card.Header>
           {this.state.friends.map((friend) =>
             <ListGroup.Item action variant="light" key={friend.to._id}>
               <Link to={`/chat/${friend.to._id}`}>{friend.to.username}</Link>

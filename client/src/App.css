@@ -2,6 +2,7 @@
 
 body {
   background-color: #f4f4f4;
+  /* min-height: 100%; */
 }
 
 /* .App {
@@ -61,26 +62,35 @@ h2 {
   flex: 1;
 }
 
+/* FOOTER */
+.footer-container {
+font-size: 0.7rem;
+width: 100%;
+height: 0.5rem;
+text-align: center;
+margin-top: 1rem;
+}
+
+/* OPENING PAGE */
+
+
 
 /* SIGN UP */
-@media only screen and (max-width: 800px) {
   .signup-container {
+    min-height: 87vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     
   }
-  .signup-container h1{
-    text-align: center;
-    align-content: center;
-    align-items: center;
-    color: grey;
-    width: 80vw;
-    height: 15vh;
-    font-family: Khula;
-    font-size: 3vh;
+
+
+  /* EDIT PROFILE */
+  .edit-profile-picture{
+    min-height: 87vh;
+    padding: 2em;
   }
-}  
+  
 
 
 /* HOME - LOGGED */
@@ -94,59 +104,52 @@ h2 {
 }
 
 
-/* OPENING PAGE */
-
-/* ANIMATED TEXT */
-.hidden {
-  opacity:0;
-}
-.console-container {
- 
-  font-family:Khula;
-  font-size:4em;
-  text-align:center;
-  height:200px;
-  width:600px;
-  display:block;
-  position:absolute;
-  color:white;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  margin:auto;
-}
-.console-underscore {
-   display:inline-block;
-  position:relative;
-  top:-0.14em;
-  left:10px;
-}
-
-
 /* PROFILE PAGE */
+.profile-container{
+  min-height: 87vh;
 
+}
 .profile-intro {
   display: flex;
   justify-content: space-around;
   padding: 2em;
 }
 
-/* CHAT LIST/CONTACT PAGE */
 
-.contact-list {
+/* CHAT LIST/CONTACT PAGE */
+.contact-list-container{
+  min-height: 87vh;
   padding: 2em;
 }
 
 
 /* CHAT/MESSAGES PAGE */
-
 .chat-page-container {
-display: flex;
-flex-direction: column;
+  min-height: 87vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
 }
 
 .chat-page-container form {
   margin: 0;
   max-width: 100vw;
+}
+
+
+
+/* SEARCH PAGE */
+.search-cointainer{
+  min-height: 87vh;
+  padding: 2em;
+}
+
+.search-cointainer form {
+  margin: 0;
+  max-width: 100vw;
+}
+
+/* PORTFOLIO */
+.portfolioContainer {
+  min-height: 84vh;
 }

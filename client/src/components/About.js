@@ -50,7 +50,8 @@ export default class About extends Component{
         });
     };
   render() {
-      return (
+    return (
+        <div className="edit-profile-picture">
         <Form onSubmit={this.handleSubmit}>
            <Form.Group>
            <Form.Label htmlFor="name">Name(as you like to see in your profile): </Form.Label>
@@ -93,8 +94,9 @@ export default class About extends Component{
             />
           </Form.Group>
   
-          <Button type="submit">Add to your profile</Button>
+          <Button variant="warning" type="submit">Add to your profile</Button>
         </Form>
+        </div>
       );
     }
   }
