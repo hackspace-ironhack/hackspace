@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
     tasks: tasks,
     owner: owner
   })
-    .then(porfolio => {
+    .then(portfolio => {
       res.json(portfolio);
     })
     .catch(err => {
@@ -33,7 +33,7 @@ router.post("/", (req, res) => {
 // GET /api/porfolio
 // returns a list of all projects
 router.get("/", (req, res) => {
-  Project.find()
+  Portfolio.find()
     .populate("tasks")
     .then(portfolio => {
       res.json(portfolio);
@@ -47,25 +47,21 @@ router.get("/", (req, res) => {
 // return a specific `portfolio` resource with a given id
 router.get("/:id", (req, res) => {
   // check if req.params.id is valid, if not respond with a 4xx status code
-  Project.findById(req.params.id)
+  Portfolio.findById(req.params.id)
     .populate("tasks")
     .then(portfolio => {
-      if (!portfolio) {
-        res.status(404).json(portfolio);
-      } else {
         res.json(portfolio);
-      }
-    })
-    .catch(err => {
-      res.json(err);
+      })
+      .catch(err => {
+        res.json(err);
+     });
     });
-});
 
 // PUT /api/portfolio/:id
 router.put("/:id", (req, res) => {
   const { title, tools, description, link } = req.body;
 
-  Project.findByIdAndUpdate(
+  Portfolio.findByIdAndUpdate(
     req.params.id,
     { title, tools, description, link },
     // { new: true } ensures that we are getting the updated document in the .then callback

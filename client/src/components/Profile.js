@@ -57,15 +57,16 @@ export default class Profile extends Component {
              </Card.Body>
             </Card>
             </div>
+            {/* calling the "post" component */}
             <div className="profile-post">
               <Card border = "warning">
                 <Card.Body>
                   <Card.Text>
+                    <Card.Header> Posted by: {user.name} on DAte</Card.Header>
               {this.props.user && user._id === this.props.user._id &&
                   <Post getData={this.loadData} user={user} />
               }
                 </Card.Text>
-                
                 </Card.Body>
               </Card>
                </div>
