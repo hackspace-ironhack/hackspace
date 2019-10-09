@@ -22,40 +22,45 @@ const Navigation = props => {
   <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
   <Navbar.Brand href="/"><Image className="navbar-logo" src={logo}/></Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
+  <Navbar.Collapse id="responsive-navbar-nav" className="navbar-content">
         <Nav className="mr-auto">
           <div className="salutation">
-    {props.user && <Nav.Item>Welcome, {props.user.username}!</Nav.Item>}
-          </div>
-          {props.user ? (
-            //  LOGGED USER
-            <>
-              <Nav.Item>
-                <Link className="bar-links" to="/profile">Profile</Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link className="bar-links" to="/portfolio">Portfolio</Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link className="bar-links" to="/chat">Chat</Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Link className="bar-links" to="/search">Find Users</Link>
-              </Nav.Item>
-              <Nav.Item>
-              <Link className="bar-links" to="/" onClick={() => handleLogout(props)}> Logout </Link>
-              </Nav.Item>
-            </>
-          ) : (
-              // NO LOGGED USER
-              <>
+            {props.user && <Nav.Item>Welcome, {props.user.username}!
+                </Nav.Item>}
+            </div></Nav>
+        <Nav >
+           
+            
+            {props.user ? (
+              //  LOGGED USER
+              <div className="nav-container">
                 <Nav.Item>
-                  <Link className="bar-links" to="/signup">Signup</Link>
+                  <Link className="bar-links" to="/profile">Profile</Link>
+                </Nav.Item>
+                {/* <Nav.Item>
+                  <Link className="bar-links" to="/portfolio">Portfolio</Link>
+                </Nav.Item> */}
+                <Nav.Item>
+                  <Link className="bar-links" to="/chat">Chat</Link>
                 </Nav.Item>
                 <Nav.Item>
-                <Link className="bar-links" to="/login">Login</Link>
+                  <Link className="bar-links" to="/search">Find Users</Link>
                 </Nav.Item>
-              </>
+                <Nav.Item>
+                <Link className="bar-links" to="/" onClick={() => handleLogout(props)}> Logout </Link>
+                </Nav.Item>
+              </div>
+            ) : (
+                // NO LOGGED USER
+                <div className="nav-container">
+                  {/* <Nav.Item>
+                    <Link className="bar-links" to="/signup">Signup</Link>
+                  </Nav.Item> */}
+                  <Nav.Item>
+                  <Link className="bar-links" to="/login">Login</Link>
+                  </Nav.Item>
+                  </div>
+            
             )}
     
     </Nav>

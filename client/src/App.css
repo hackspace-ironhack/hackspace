@@ -64,9 +64,24 @@ h2 {
 
 /* NAVBAR */
 .navbar-logo {
-  width: 8vw;
+  width: 10vw;
   padding-top: 0 !important;
   padding-bottom: 0 !important; 
+}
+
+.bar-links{
+  color: #f4f4f4;
+  cursor: pointer !important;
+  padding-left: 2vw;
+}
+
+.nav-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.salutation{
+  padding-left: 3vw;
 }
 
 /* FOOTER */
@@ -84,12 +99,19 @@ margin-top: 1rem;
 
 /* SIGN UP */
   .signup-container {
-    min-height: 87vh;
+    min-height: 89vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     
   }
+
+  /* LOG IN */
+  .login-container{
+    min-height: 89vh;
+    padding-top: 3vh
+  }
+  
 
 
   /* EDIT PROFILE */
@@ -105,11 +127,7 @@ margin-top: 1rem;
   color: #fddd00;
 }
 
-.bar-links{
-  color: #f4f4f4;
-  cursor: pointer !important;
-  
-}
+
 
 
 /* PROFILE PAGE */
@@ -123,6 +141,27 @@ margin-top: 1rem;
   padding: 2em;
 }
 
+.post-card {
+  margin-bottom: 7vh;
+}
+
+.profile-post{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.profile-content{
+  display: flex;
+  flex-direction: column;
+  width: 92vw;
+  padding-left: 7vw;
+}
+
+.profile-links{
+  padding-bottom: 1.5vh;
+  padding-left: 5vw;
+}
 
 /* CHAT LIST/CONTACT PAGE */
 .contact-list-container{

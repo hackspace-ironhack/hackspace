@@ -39,7 +39,7 @@ export default class AddPost extends Component {
       return (
         <Form onSubmit = {this.handleSubmit}>
           <Form.Group> 
-            <Form.Label htmlFor="post">Your Post: </Form.Label>
+            <Form.Label htmlFor="post">Write your post:</Form.Label>
               <Form.Control
               type="text"
               onChange={this.handleChange}
@@ -48,7 +48,7 @@ export default class AddPost extends Component {
               value={this.state.post}
             />
             </Form.Group>
-          <Button variant="warning" active type="submit">Post your thought</Button>
+          <Button variant="warning" active type="submit">Submit</Button>
         </Form>
       );
     }

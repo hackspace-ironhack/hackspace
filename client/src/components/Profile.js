@@ -7,7 +7,7 @@ import Likebutton from "./Likebutton";
 import axios from "axios";
 import Post from "./Post";
 import PostList from "./PostList";
-import { Button, Card, Image } from 'react-bootstrap';
+import { Button, Card, Image, Container, Row, Col } from 'react-bootstrap';
 import UploadProfilePic from './UploadProfilePic';
 
 import placeHolder from '../images/profile-placeholder.jpeg';
@@ -68,12 +68,16 @@ export default class Profile extends Component {
         
         {user && (
           <div>
-            <div className="imagebox">
+            {/* <div className="imagebox">
               <UploadProfilePic user={this.props.user}/>
-            </div>
+            </div> */}
             <div className="profile-intro">
+                {/* <Container>
+                <Row>
+                  <Col lg={4} md={{span:12, order: 2}} sm={{span:12, order: 2}} xl={{span:12, order: 2}}> */}
+              <div className="about-card">
                 
-                <div className="about-card">
+                  
                   <Card border="dark" style={{ width: '60vw' }}>
                     <Card.Header>About</Card.Header>
                     <Card.Body>
@@ -87,9 +91,12 @@ export default class Profile extends Component {
                         </ul>
                       </Card.Text>
                     </Card.Body>
-                  </Card>
+                      </Card>
+                      
+                  
               </div>
-              
+                  {/* </Col>
+                  <Col lg={5} md={{span:12, order: 1}} sm={{span:12, order: 1}} xl={{span:12, order: 1}}> */}
               <div className="profile-picture-card">
                 <Card border="dark" style={{ width: '18rem' }}>
                   <Card.Img variant="top" src={placeHolder} />
@@ -103,32 +110,35 @@ export default class Profile extends Component {
             }
                   </Card.Body>
                 </Card>
-              </div>
-              
+                    </div>
+                    {/* </Col>
+                </Row>
+                  </Container> */}
             </div>
-            <div className="profile-links">
-              <Button variant="secondary" active>Portfolio</Button>
-              <Button variant="secondary" active>Contacts</Button>
-            </div>
-            {/* calling the "post" component */}
-            <div className="profile-post">
-              <Card border = "warning">
-                <Card.Body>
-                  <Card.Text>
-              {this.props.user && user._id === this.props.user._id &&
-                  <AddPost user={user} />
-              }
-                </Card.Text>
-                </Card.Body>
-              </Card>
-              <Card>
-                <PostList posts={this.state.posts} user={this.props.user} />
-              </Card>
+            <div className="profile-content">
+                <div className="profile-links">
+                  <Button variant="secondary" active>Portfolio</Button>
+                  <Button variant="secondary" active>Contacts</Button>
+                </div>
+                {/* calling the "post" component */}
+                <div className="profile-post">
+                  <Card border = "warning" className="post-card">
+                    <Card.Body>
+                      <Card.Text>
+                  {this.props.user && user._id === this.props.user._id &&
+                      <AddPost user={user} />
+                  }
+                    </Card.Text>
+                    </Card.Body>
+                  </Card>
+                  <Card>
+                    <PostList posts={this.state.posts} user={this.props.user} />
+                  </Card>
+                  
               
-          
-               </div>
-              
-                <UploadProfilePic/>
+                </div>
+              </div>  
+                {/* <UploadProfilePic/> */}
 
           </div>
         )}
