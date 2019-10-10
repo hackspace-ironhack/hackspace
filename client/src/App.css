@@ -151,6 +151,10 @@ margin-top: 1rem;
   padding-bottom: 2em;
 }
 
+.profile-picture-card{
+  padding-bottom: 2em
+}
+
 .post-card {
   margin-bottom: 7vh;
 }
