@@ -25,7 +25,7 @@ export default class Post extends Component {
   }
 
 render(){
-  console.log("posts > ", this.state)
+  console.log("posts: ", this.state)
   return (
     <div className="post-container">
       <AddPost getData={this.getData}/>
