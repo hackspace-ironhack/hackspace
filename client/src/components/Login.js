@@ -40,7 +40,7 @@ export default class Login extends Component {
   };
 
   render() {
-    if (this.props.user !== undefined) {
+    if (this.props.user) {
       return <Redirect to="/profile"/>
     }
     return (

@@ -6,6 +6,8 @@ import React, {Component} from "react";
 import ProjectList from "./ProjectList";
 import AddProject from "./AddProject";
 import axios from "axios";
+import {Container, Row, Col} from "react-bootstrap";
+
 
 export default class portfolio extends Component {
   state = {
@@ -37,9 +39,9 @@ export default class portfolio extends Component {
 render () {
   return (
     <div className="portfolioContainer">
-      <h2>portfolio</h2>
-      <AddProject user={this.props.user} {...this.props}/>
-      <ProjectList portfolio={this.state.portfolio} {...this.props}/>
+    <h2 style = {{textAlign:'center'}} >Projects that I am Proud of! </h2>
+      <ProjectList portfolio={this.state.portfolio} {...this.props} />
+      <AddProject user={this.props.user} {...this.props} getData={this.getData} />
     </div>
   );
 }

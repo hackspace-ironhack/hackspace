@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = cloudinaryStorage({
   cloudinary,
   folder: 'Upload-Img',
-  allowedFormats: ['jpg', 'png', 'gif', 'mp4', 'mp3'],
+  allowedFormats: ['jpg', 'png', 'gif', 'mp4'],
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   }

@@ -75,7 +75,7 @@ class ChatPage extends React.Component {
           <Card key={message._id} className={this.props.user && this.props.user._id === message.from._id ? "text-right border-secondary" : ""}>
             <Card.Body>
               <Card.Title>
-                {message.from.username}
+                {message.from.name}
               </Card.Title>
               <Card.Text>
                 {message.message}

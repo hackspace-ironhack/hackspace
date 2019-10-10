@@ -77,7 +77,7 @@ router.delete("/logout", (req, res) => {
 // checks if the user has an active session
 // GET /api/auth/loggedin
 router.get("/loggedin", (req, res) => {
-    const user = req.user;
+  const user = req.user;
   if (user) {
     res.json(
       {
@@ -88,11 +88,12 @@ router.get("/loggedin", (req, res) => {
         city: user.city,
         skills: user.skills,
         hobbies: user.hobbies,
-        profilePicture: user.profilePicture
+        profilePicture: user.profilePicture,
+        uploadedMedia: user.uploadedMedia
       });
   } else {
-    res.status(401);
-    res.json({ error: 'Unauthorized' });
+    res.status(200);
+    res.json(null);
   }
 });
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card, ListGroup } from "react-bootstrap";
+// import { Container, ListGroup, Card } from "react-bootstrap";
 
 export default class AddProject extends Component {
   state = {
@@ -36,7 +37,7 @@ export default class AddProject extends Component {
           description: "",
           link:""
         });
-        // this.props.getData();
+        this.props.getData();
         this.props.history.push("/portfolio");
       })
       .catch(err => {
@@ -46,8 +47,11 @@ export default class AddProject extends Component {
 
   render() {
     return (
+      <Card>
       <Form onSubmit = {this.handleSubmit}>
+            <ListGroup varient = "flush">
           <Form.Group> 
+           
             <Form.Label htmlFor="title">Title </Form.Label>
               <Form.Control
               type="text"
@@ -55,9 +59,9 @@ export default class AddProject extends Component {
               id="title"
               name="title"
               value={this.state.title}
-            />
+              />
+              
             </Form.Group>
-
             <Form.Group> 
             <Form.Label htmlFor="tools">Tools</Form.Label>
               <Form.Control
@@ -90,8 +94,10 @@ export default class AddProject extends Component {
               value={this.state.link}
             />
             </Form.Group>
-          <Button type="submit">Add to your Portfolio</Button>
+            </ListGroup>
+          <Button variant="warning" type="submit">Add to your Portfolio</Button>
         </Form>         
+        </Card>
     );
   }
 }
