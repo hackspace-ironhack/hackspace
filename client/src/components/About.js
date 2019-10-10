@@ -64,7 +64,7 @@ export default class About extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="city">City: </Form.Label>
+            <Form.Label htmlFor="city">Location: </Form.Label>
             <Form.Control
               onChange={this.handleChange}
               type="text"
@@ -74,7 +74,7 @@ export default class About extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Label htmlFor="skills">Skills: </Form.Label>
+            <Form.Label htmlFor="skills">Technical Skills: </Form.Label>
             <Form.Control
               onChange={this.handleChange}
               type="text"
