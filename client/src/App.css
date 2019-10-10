@@ -1,7 +1,7 @@
 body {
 	background-color: #f4f4f4;
-	font-family: 'Titillium Web', sans-serif;
-	/* font-family: 'Rubik', sans-serif; */
+	/* font-family: 'Titillium Web', sans-serif; */
+	font-family: 'Rubik', sans-serif;
 }
 
 /* .App {
@@ -61,22 +61,9 @@ h2 {
 	flex: 1;
 }
 
-/* Portfolio */
-.portfolioContainer h2 {
-	text-align: center;
-	display: flex;
-	flex-wrap: wrap;
-}
-.projectbox {
-	display: flex;
-	justify-content: center;
-	justify-items: center;
-	align-content: center;
-}
-
 /* NAVBAR */
 .navbar-logo {
-	width: 12vw;
+	width: 10vw;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
 }
@@ -108,14 +95,50 @@ h2 {
 /* OPENING PAGE */
 /* SIGN UP */
 .signup-container {
+	background-image: url("./images/dot-bg-big-04.png");
 	min-height: 89vh;
 	display: flex;
 	flex-direction: column;
+}
+
+.first-line {
+	padding: 10px;
+	text-align: center;
+	font-size: 15px;
+}
+
+.text-animation {
 	align-items: center;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.introduction {
+	padding: 10px;
+	text-align: center;
+	font-size: 15px;
+}
+
+.react-rotating-text-cursor {
+	animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
+}
+
+@keyframes blinking-cursor {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 
 /* LOG IN */
 .login-container {
+	background-image: url("./images/dot-bg-big-04.png");
 	min-height: 89vh;
 	padding-top: 3vh;
 }
@@ -175,6 +198,19 @@ h2 {
 .profile-links {
 	padding-bottom: 1.5vh;
 	padding-left: 5vw;
+}
+
+/* Portfolio */
+.portfolioContainer h2 {
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+.projectbox {
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+	align-content: center;
 }
 
 /* CHAT LIST/CONTACT PAGE */

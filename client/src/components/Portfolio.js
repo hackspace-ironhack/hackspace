@@ -41,7 +41,7 @@ render () {
     <div className="portfolioContainer">
     <h2 style = {{textAlign:'center'}} >Projects that I am Proud of! </h2>
       <ProjectList portfolio={this.state.portfolio} {...this.props} />
-      <AddProject user={this.props.user} {...this.props}/>
+      <AddProject user={this.props.user} {...this.props} getData={this.getData} />
     </div>
   );
 }

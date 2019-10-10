@@ -56,7 +56,28 @@ router.post("/add/image", uploader.single("profilePicture"), (req, res, next) =>
 
 router.post("/api/profilePicture/:id", (req, res) => {
   // see how to return the updated user
-  User.findByIdAndUpdate(req.params.id, { profilePicture: req.body.profilePicture }).then((user) => {
+  User.findByIdAndUpdate(req.params.id, { profilePicture: req.body.profilePicture }, {new: true}).then((user) => {
+    res.json(user)
+  })
+})
+
+
+// POST Media
+
+router.post("/add/media", uploader.single("uploadedMedia"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No media uploaded"));
+    return
+  }
+
+  res.json({ secure_url: req.file.secure_url })
+})
+
+
+router.post("/api/uploadedMedia/:id", (req, res) => {
+  // see how to return the updated user
+  console.log(req.body.uploadedMedia)
+  User.findByIdAndUpdate(req.params.id, { $push: { uploadedMedia: req.body.uploadedMedia } }, { new: true }).then((user) => {
     res.json(user)
   })
 })

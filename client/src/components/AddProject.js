@@ -37,7 +37,7 @@ export default class AddProject extends Component {
           description: "",
           link:""
         });
-        // this.props.getData();
+        this.props.getData();
         this.props.history.push("/portfolio");
       })
       .catch(err => {

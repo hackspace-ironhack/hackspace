@@ -5,19 +5,19 @@ const userSchema = new Schema(
   {
     username: String,
     password: String,
-    email:String,
+    email: String,
     name: String,
-    city:String,
-    skills:String,
-    hobbies:String,
-    profilePicture:String,
-    uploadedImg:[]
+    city: String,
+    skills: String,
+    hobbies: String,
+    profilePicture: String,
+    uploadedMedia: Array
   },
   {
     timestamps: true
   }
 );
-userSchema.index({name: 'text'})
+userSchema.index({ name: 'text' })
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
