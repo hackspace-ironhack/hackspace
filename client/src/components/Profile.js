@@ -82,7 +82,7 @@ export default class Profile extends Component {
         {user && (
           <div>
             <div className="imagebox">
-              <UploadProfilePic user={this.props.user}/>
+              <UploadProfilePic user={this.props.user} loadProfile={this.loadProfile} />
             </div>
             <div className="profile-intro">
                 {/* <Container>
@@ -139,13 +139,13 @@ export default class Profile extends Component {
                     <Card.Body>
                       <Card.Text>
 
-                      <AddPost user={user} />
+                      <AddPost user={user} getData={this.loadPosts} />
 
                     </Card.Text>
                     </Card.Body>
                   </Card>
                   <Card>
-                    <PostList posts={this.state.posts} user={this.props.user} />
+                  <PostList posts={this.state.posts} user={this.props.user} handleLike={this.handleLike} />
                   </Card>
 
 

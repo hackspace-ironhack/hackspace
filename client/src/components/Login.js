@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { login } from "../services/api";
+import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
   state = {
@@ -39,6 +40,9 @@ export default class Login extends Component {
   };
 
   render() {
+    if (this.props.user !== undefined) {
+      return <Redirect to="/profile"/>
+    }
     return (
       <div className="login-container">
         <Form onSubmit={this.handleSubmit}>

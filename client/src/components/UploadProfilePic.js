@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default class UploadProfilePic
-  extends Component {
+export default class UploadProfilePic extends Component {
   state = {
     name: "",
     profilePicture: ""
@@ -40,6 +39,7 @@ export default class UploadProfilePic
       .then((response) => {
         // update the user and re-render the Profile
         console.log("Image Changed", response)
+        this.props.loadProfile();
       })
       .catch(err => console.log(err))
   };

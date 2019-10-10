@@ -21,7 +21,8 @@ import UploadProfilePic from "./components/UploadProfilePic";
 
 class App extends React.Component {
   state = {
-    user: undefined
+    user: undefined,
+    loadingUser: false,
   };
 
   setUser = user => {
@@ -31,29 +32,33 @@ class App extends React.Component {
   };
 
   componentDidMount = () => {
+    this.setState({ loadingUser: true });
     this.loadUser();
   }
   loadUser = () => {
     axios.get("/api/auth/loggedin").then(response => {
       const user = response.data;
-      this.setUser(user);
+      this.setState({ user: user , loadingUser: false});
     }).catch((error) => {
-      this.setUser(null);
+      this.setState({ user: false , loadingUser: false});
     });
   }
 
   render() {
+    if (this.state.loadingUser) {
+      return <div></div>;
+    }
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
       <Switch>
         <Route
         exact path="/"
-        render={props => <Signup setUser={this.setUser} {...props} />}
+        render={props => <Signup user={this.state.user} setUser={this.setUser} {...props} />}
         />
         <Route
         exact path="/login"
-        render={props => <Login setUser={this.setUser} {...props} />}
+        render={props => <Login user={this.state.user} setUser={this.setUser} {...props} />}
         />
 
         <Route

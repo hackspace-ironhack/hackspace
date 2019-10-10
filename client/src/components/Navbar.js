@@ -20,7 +20,7 @@ const handleProject = props => {
 const Navigation = props => {
   return (
   <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-  <Navbar.Brand href="/"><Image className="navbar-logo" src={logo}/></Navbar.Brand>
+      <Navbar.Brand as={Link} to={props.user ? "/profile" : "/"}><Image className="navbar-logo" src={logo}/></Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav" className="navbar-content">
         <Nav className="mr-auto">

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { signup } from "../services/api";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 // const ReactRotatingText = require('react-rotating-text');
 
@@ -43,6 +43,9 @@ export default class Signup extends Component {
   };
 
   render() {
+    if (this.props.user !== undefined) {
+      return <Redirect to="/profile"/>
+    }
     const styles = {
       signup: {
         display: 'flex',

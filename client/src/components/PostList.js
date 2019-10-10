@@ -20,7 +20,7 @@ class PostList extends React.Component {
                     <Card.Text>
                       {item.post}
                     </Card.Text>
-                    <Button variant="warning" active value={item._id} onClick={this.handleClick}>{item.likes.length} {item.likes.length !== 1 ? "Like" : "Likes"}</Button>
+                    <Button variant="warning" active value={item._id} onClick={this.handleClick}>{item.likes.length} {item.likes.length === 1 ? "Like" : "Likes"}</Button>
                   </Card.Body>
                 </Card>
             );
