@@ -154,68 +154,91 @@ h2 {
 	color: #fddd00;
 }
 
+
+
+
 /* PROFILE PAGE */
-.profile-container {
-	min-height: 87vh;
+.profile-container{
+  min-height: 87vh;
+
 }
 .profile-intro {
-	display: flex;
-	justify-content: space-around;
-	padding: 2em;
+  display: flex;
+  justify-content: space-around;
+  padding: 2em;
+}
+
+@media only screen and (max-width: 800px){
+  .profile-intro {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.about-card {
+  padding-bottom: 2em;
+}
+
+.profile-picture-card{
+  padding-bottom: 2em
 }
 
 .post-card {
-	margin-bottom: 7vh;
+  margin-bottom: 7vh;
 }
 
-.profile-post {
-	display: flex;
-	flex-direction: column;
+.profile-post{
+  display: flex;
+  flex-direction: column;
+  
 }
 
-.profile-content {
-	display: flex;
-	flex-direction: column;
-	width: 92vw;
-	padding-left: 7vw;
+.profile-content{
+  display: flex;
+  flex-direction: column;
+  width: 92vw;
+  padding-left: 7vw;
 }
 
-.profile-links {
-	padding-bottom: 1.5vh;
-	padding-left: 5vw;
+.profile-links{
+  padding-bottom: 1.5vh;
+  padding-left: 5vw;
 }
 
 /* CHAT LIST/CONTACT PAGE */
-.contact-list-container {
-	min-height: 87vh;
-	padding: 2em;
+.contact-list-container{
+  min-height: 87vh;
+  padding: 2em;
 }
+
 
 /* CHAT/MESSAGES PAGE */
 .chat-page-container {
-	min-height: 87vh;
-	display: flex;
-	flex-direction: column;
-	padding: 2em;
+  min-height: 87vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
 }
 
 .chat-page-container form {
-	margin: 0;
-	max-width: 100vw;
+  margin: 0;
+  max-width: 100vw;
 }
 
+
+
 /* SEARCH PAGE */
-.search-cointainer {
-	min-height: 87vh;
-	padding: 2em;
+.search-cointainer{
+  min-height: 87vh;
+  padding: 2em;
 }
 
 .search-cointainer form {
-	margin: 0;
-	max-width: 100vw;
+  margin: 0;
+  max-width: 100vw;
 }
 
 /* PORTFOLIO */
 .portfolioContainer {
-	min-height: 84vh;
+  min-height: 84vh;
 }

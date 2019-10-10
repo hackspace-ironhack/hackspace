@@ -20,6 +20,7 @@ export default class UploadProfilePic extends Component {
       this.setState({ profilePicture })
       console.log(this.state);
     })
+    
 
 
   }

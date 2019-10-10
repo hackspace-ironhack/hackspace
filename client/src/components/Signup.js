@@ -43,8 +43,10 @@ export default class Signup extends Component {
 
   render() {
     if (this.props.user !== undefined) {
-      return <Redirect to="/profile" />
-    }
+      return <Redirect to="/profile"/>
+    } 
+    // else <Redirect to="/"/>
+    
     const styles = {
       signup: {
         display: 'flex',

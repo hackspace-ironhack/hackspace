@@ -65,107 +65,91 @@ export default class Profile extends Component {
 
   }
 
-  followUser = () => {
-    const userId = this.props.match.params.id;
-    axios.post('/api/user/friends', { friend: userId })
-  }
+    followUser = () => {
+      const userId = this.props.match.params.id;
+      axios.post('/api/user/friends', { friend: userId })
+    }
 
-  render = () => {
-    console.log(this.props.user)
-    // Choses between your own profile or someone elses.
-    const userId = this.props.match.params.id;
+    render = () => {
+      console.log(this.props.user)
+      // Choses between your own profile or someone elses.
+      const userId = this.props.match.params.id;
 
-    const user = userId !== undefined ? this.state.profile : this.props.user;
-    // if showing your own profile, it uses data from the props
-    return (
-      <div className="profile-container">
+      const user = userId !== undefined ? this.state.profile : this.props.user;
+      // if showing your own profile, it uses data from the props
+      return (
+        <div className="profile-container">
 
-        {user && (
-          <div>
-            <div className="imagebox">
-            </div>
-            <div className="profile-intro">
-              {/* <Container>
-                <Row>
-                  <Col lg={4} md={{span:12, order: 2}} sm={{span:12, order: 2}} xl={{span:12, order: 2}}> */}
-              <div className="about-card">
-
-
-                <Card border="dark" style={{ width: '60vw' }}>
-                  <Card.Header>About</Card.Header>
-                  <Card.Body>
-                    {/* <Card.Title>About:</Card.Title> */}
-                    <Card.Text>
-                      <ul>
-                        <li>City: {user.city}</li>
-                        <li>Technical Skills: {user.skills}</li>
-                        <li>Interests: {user.hobbies}</li>
-                      </ul>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-
-
+          {user && (
+            <div>
+              <div className="imagebox">
+                <UploadProfilePic user={this.props.user} loadProfile={this.loadProfile} />
               </div>
-              {/* </Col>
-                  <Col lg={5} md={{span:12, order: 1}} sm={{span:12, order: 1}} xl={{span:12, order: 1}}> */}
-
-              <div className="profile-picture-card">
-                <Card border="dark" style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={user.profilePicture || placeHolder} />
-                  <Card.Body>
-                    <Card.Title>{user.name}</Card.Title>
-                    {this.props.user && user._id !== this.props.user._id &&
-                      <Button variant="warning" onClick={this.followUser} active>Follow</Button>
-
-                    }
-                    {this.props.user && user._id === this.props.user._id &&
-                      <Button variant="warning" active as={Link} to="/about">Edit your profile</Button>
-                    }
-                    {/* <UploadProfilePic user={this.props.user} loadProfile={this.loadProfile} /> */}
-
-                  </Card.Body>
-
-                </Card>
+              <div className="profile-intro">
+                <div className="about-card">
 
 
-              </div>
-              {/* </Col>
-                </Row>
-                  </Container> */}
-            </div>
-            <div className="profile-content">
-              <div className="profile-links">
-                <Button variant="secondary" active>Portfolio</Button>
-                <Button variant="secondary" active>Contacts</Button>
-              </div>
-              {/* calling the "post" component */}
-              {this.props.user && user._id === this.props.user._id &&
-                <div className="profile-post">
-                  <Card border="warning" className="post-card">
+                  <Card border="dark" style={{ width: '60vw' }}>
+                    <Card.Header>About</Card.Header>
                     <Card.Body>
+                      {/* <Card.Title>About:</Card.Title> */}
                       <Card.Text>
-
-                        <AddPost user={user} getData={this.loadPosts} />
-
-                        {/* <UploadProfilePic user={this.props.user} loadProfile={this.loadProfile} /> */}
-
+                        <ul>
+                          <li>City: {user.city}</li>
+                          <li>Technical Skills: {user.skills}</li>
+                          <li>Interests: {user.hobbies}</li>
+                        </ul>
                       </Card.Text>
                     </Card.Body>
-                  </Card>
-                  <Card>
-                    <PostList posts={this.state.posts} user={this.props.user} handleLike={this.handleLike} />
                   </Card>
 
 
                 </div>
-              }
-            </div>
-            {/* <UploadProfilePic/> */}
+                <div className="profile-picture-card">
+                  <Card border="dark" style={{ width: '18rem' }}>
+                    <Card.Img variant="top" src={user.profilePicture || placeHolder} />
+                    <Card.Body>
+                      <Card.Title>{user.name}</Card.Title>
+                      {this.props.user && user._id !== this.props.user._id &&
+                        <Button variant="warning" onClick={this.followUser} active>Follow</Button>
+                      }
+                      {this.props.user && user._id === this.props.user._id &&
+                        <Button variant="warning" active as={Link} to="/about">Edit your profile</Button>
+                      }
+                    </Card.Body>
 
-          </div>
-        )}
-      </div>
-    );
+                  </Card>
+                </div>
+              </div>
+              <div className="profile-content">
+                <div className="profile-links">
+                  <Button variant="secondary" active>Portfolio</Button>
+                  <Button variant="secondary" active>Contacts</Button>
+                </div>
+                {/* calling the "post" component */}
+                {this.props.user && user._id === this.props.user._id &&
+                  <div className="profile-post">
+                    <Card border="warning" className="post-card">
+                      <Card.Body>
+                        <Card.Text>
+
+                          <AddPost user={user} getData={this.loadPosts} />
+
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                    <Card>
+                      <PostList posts={this.state.posts} user={this.props.user} handleLike={this.handleLike} />
+                    </Card>
+
+                  </div>
+                }
+              </div>
+              {/* <UploadProfilePic/> */}
+
+            </div>
+          )}
+        </div>
+      );
   };
 }
