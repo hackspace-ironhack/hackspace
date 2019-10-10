@@ -136,7 +136,6 @@ export default class Profile extends Component {
               {this.props.user && user._id !== this.props.user._id &&
                 <Button variant="warning" onClick={this.followUser}>Follow</Button>
             }
-                <UploadProfilePic/>
 
           </div>
         )}
