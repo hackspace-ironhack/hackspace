@@ -7,10 +7,10 @@ import { Form, Button } from "react-bootstrap";
 
 export default class About extends Component {
      state = {
-       name:"",
-       city:"",
-       skills:"",
-       hobbies:"",
+       name: this.props.user.name,
+       city:this.props.user.city,
+       skills:this.props.user.skills,
+       hobbies:this.props.user.hobbies,
      };
 
      handleChange = event => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {Button} from "react-bootstrap";
 
 export default class UploadMedia
   extends Component {
@@ -21,17 +22,8 @@ export default class UploadMedia
     uploadData.append("uploadedMedia", files)
     axios.post("/add/media", uploadData).then(response => {
       const uploadedMedia = response.data.secure_url
-      this.setState({ uploadedMedia })
-      console.log(this.state);
+      this.uploadMedia(uploadedMedia);
     })
-
-  }
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   };
 
   handleSubmit = event => {
@@ -47,6 +39,16 @@ export default class UploadMedia
       .catch(err => console.log(err))
   };
 
+  uploadMedia = (uploadedMedia) => {
+    axios.post(`/api/uploadedMedia/${this.props.user._id}`, {uploadedMedia})
+        .then((response) => {
+          // update the user and re-render the Profile
+          console.log("Image Changed", response)
+          this.props.setUser(response.data);
+        })
+        .catch(err => console.log(err));
+  }
+
 
   render() {
     console.log("State: ", this.state)
@@ -54,14 +56,11 @@ export default class UploadMedia
     return (
       <div>
         <section>
-          <h2>Post </h2>
           <form onSubmit={this.handleSubmit} encType="multipart/form-data" >
             {/* <input type="text" name="name" onChange={this.handleChange} /> */}
-            <input type="file" name="uploadedMedia" id="uploadedMedia" placeholder="Upload Photo here" onChange={this.onUpload} />
-
-            {/* if else?! */}
-
-            <input type="submit" value="Submit" />
+            <Button as="label" variant="warning" active size="sm" style={{marginBottom:0}} block>
+              Add Media <input type="file" name="profilePicture" style={{display: 'none'}} id="profilePicture" onChange={this.onUpload} />
+            </Button>
           </form>
         </section>
       </div>

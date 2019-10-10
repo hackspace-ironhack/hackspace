@@ -69,7 +69,6 @@ export default class Signup extends Component {
           <div style={styles.signup}>
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>
-                <Form.Label htmlFor="username"></Form.Label>
                 <Form.Control
                   type="text"
                   name="username"
@@ -80,7 +79,6 @@ export default class Signup extends Component {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label htmlFor="email"></Form.Label>
                 <Form.Control
                   type="text"
                   name="email"
@@ -91,7 +89,6 @@ export default class Signup extends Component {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label htmlFor="password"></Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
@@ -104,13 +101,15 @@ export default class Signup extends Component {
               {this.state.message && (
                 <Alert variant="danger">{this.state.message}</Alert>
               )}
-              <Button variant="warning" type="submit">Signup</Button>
-
+              <Button variant="warning" type="submit" block>Signup</Button>
+              <p className="text-center">
+                Already have an account?
+                <Button variant="warning" block type="submit" as={Link} to="/login">Login</Button>
+              </p>
             </Form>
-            Already have an account?
 
-          <Button variant="warning" type="submit">
-              <Link to="/login">Login</Link></Button>
+
+
           </div>
         </div>
       </>

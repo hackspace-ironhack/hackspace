@@ -40,17 +40,40 @@ router.get('/friends', (req, res) => {
     .catch(error => console.log(error));
 });
 
+router.get('/friends/:id', (req, res) => {
+    const id = req.user._id;
+    const friendId = req.params.id;
+    Relationship.findOne({
+        from: ObjectId(id),
+        to: ObjectId(friendId),
+    }).then(friends => res.json(friends))
+      .catch(error => console.log(error));
+});
+
 
 
 // create a new relationship
-router.post('/friends', (req, res) => { 
-  const { friend } = req.body;
-  Relationship.create({
-    from: req.user._id,
-    to: friend,
-  })
+router.post('/friends', (req, res) => {
+    const { friend } = req.body;
+    const relationShip = {
+        from: req.user._id,
+        to: friend,
+    };
+  Relationship.update(relationShip, relationShip, {upsert: true})
     .then(() => res.json({ success: true }))
     .catch(() => res.json({ success: false }));
+});
+
+// removed the relationship
+router.delete('/friends', (req, res) => {
+    const { friend } = req.body;
+    const relationShip = {
+        from: req.user._id,
+        to: friend,
+    };
+    Relationship.findOneAndRemove(relationShip)
+        .then(() => res.json({ success: true }))
+        .catch(() => res.json({ success: false }));
 });
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {Button} from "react-bootstrap";
 
 export default class UploadProfilePic extends Component {
   state = {
@@ -11,18 +12,14 @@ export default class UploadProfilePic extends Component {
 
 
   onUpload = event => {
-    const files = event.target.files[0]
-    const uploadData = new FormData()
+    const files = event.target.files[0];
+    const uploadData = new FormData();
 
     uploadData.append("profilePicture", files)
     axios.post("/add/image", uploadData).then(response => {
       const profilePicture = response.data.secure_url
-      this.setState({ profilePicture })
-      console.log(this.state);
-    })
-
-
-
+      this.updateProfilePicture(profilePicture);
+    });
   }
 
   handleChange = event => {
@@ -46,6 +43,16 @@ export default class UploadProfilePic extends Component {
       .catch(err => console.log(err))
   };
 
+  updateProfilePicture = (profilePicture) => {
+    axios.post(`/api/profilePicture/${this.props.user._id}`, {profilePicture})
+        .then((response) => {
+          // update the user and re-render the Profile
+          console.log("Image Changed", response)
+          this.props.setUser(response.data);
+        })
+        .catch(err => console.log(err))
+  }
+
 
   render() {
     console.log("State: ", this.state)
@@ -53,11 +60,13 @@ export default class UploadProfilePic extends Component {
     return (
       <div>
         <section>
-          <h2>Upload  your Profile Picture</h2>
           <form onSubmit={this.handleSubmit} encType="multipart/form-data" >
             {/* <input type="text" name="name" onChange={this.handleChange} /> */}
-            <input type="file" name="profilePicture" id="profilePicture" onChange={this.onUpload} />
-            <input type="submit" value="Submit" />
+            {/*<input type="file" name="profilePicture" id="profilePicture" onChange={this.onUpload} />*/}
+            <Button as="label" variant="warning" active size="sm" style={{marginBottom:0}}>
+              Upload Profile Picture <input type="file" name="profilePicture" style={{display: 'none'}} id="profilePicture" onChange={this.onUpload} />
+            </Button>
+            {/*<Button variant="warning" type="submit" size="sm" active>Submit</Button>*/}
           </form>
         </section>
       </div>

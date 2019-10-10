@@ -2,6 +2,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
 class PostList extends React.Component {
 
@@ -14,19 +15,13 @@ class PostList extends React.Component {
       <div>
         {this.props.user.uploadedMedia.map(media => {
           return (
-            <Card border="light">
-              <Card.Body>
-                <Card.Img src={media}>
-                </Card.Img>
-              </Card.Body>
-            </Card>
+            <Image src={media} thumbnail style={{ width: '18rem' }}/>
           )
         })}
         {this.props.posts.reverse().map(item => {
           return (
-            <Card border="light">
-              {/* <Card.Header>Posted by {item.name} on {new Date(item.postedOn).toLocaleDateString()}.</Card.Header> */}
-              <Card.Header>Posted by {this.props.user.username} on {item.postedOn} </Card.Header>
+            <Card border="light" style={{marginTop: "4vh"}}>
+              <Card.Header>Posted by {item.owner.name} on {new Date(item.postedOn).toLocaleDateString()}.</Card.Header>
               <Card.Body>
                 <Card.Text>
                   {item.post}

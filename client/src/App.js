@@ -8,7 +8,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Portfolio from "./components/Portfolio";
 import ChatPage from "./components/ChatPage";
-import ChatList from "./components/ChatList";
+import FriendList from "./components/FriendList";
 import Footer from "./components/Footer";
 import SearchPage from "./components/SearchPage";
 
@@ -23,7 +23,7 @@ import UploadMedia from "./components/UploadMedia";
 class App extends React.Component {
   state = {
     user: undefined,
-    loadingUser: false,
+    loadingUser: true,
   };
 
   setUser = user => {
@@ -33,9 +33,9 @@ class App extends React.Component {
   };
 
   componentDidMount = () => {
-    this.setState({ loadingUser: true });
     this.loadUser();
-  }
+  };
+
   loadUser = () => {
     axios.get("/api/auth/loggedin").then(response => {
       const user = response.data;
@@ -46,9 +46,9 @@ class App extends React.Component {
   }
 
   render() {
-    // if (this.state.loadingUser) {
-    //   return <div></div>;
-    // }
+    if (this.state.loadingUser) {
+      return <div></div>;
+    }
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
@@ -94,10 +94,15 @@ class App extends React.Component {
           render={props => <Schedule {...props} user={this.state.user}/>}
         /> */}
 
-          <Route
-            exact path="/chat"
-            render={props => <ChatList user={this.state.user} />}
-          />
+        <Route
+          exact path="/chat"
+          render={props => <FriendList user={this.state.user} chat/>}
+        />
+
+        <Route
+            exact path="/contacts"
+            render={props => <FriendList user={this.state.user} profile/>}
+        />
 
           <Route
             exact path="/userimage"

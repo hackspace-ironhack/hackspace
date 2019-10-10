@@ -25,7 +25,7 @@ const Navigation = props => {
       <Navbar.Collapse id="responsive-navbar-nav" className="navbar-content">
         <Nav className="mr-auto">
           <div className="salutation">
-            {props.user && <Nav.Item>Welcome, {props.user.username}!
+            {props.user && <Nav.Item>Welcome, {props.user.name}!
                 </Nav.Item>}
           </div></Nav>
         <Nav >
