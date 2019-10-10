@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-const todoSchema = new Schema({
+const taskSchema = new Schema({
   title: String,
+  tools: String,
   description: String,
+  link:String,
   project: { type: Schema.Types.ObjectId, ref: "Project" }
 });
 
-const ToDo = model("ToDo", todoSchema);
+const Task = model("Task", taskSchema);
 
-module.exports = ToDo;
+module.exports = Task;

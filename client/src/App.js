@@ -6,10 +6,10 @@ import Profile from "./components/Profile";
 import About from "./components/About";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Portfolio from "./components/Portfolio";
 import ChatPage from "./components/ChatPage";
 import ChatList from "./components/ChatList";
-import ToDoList from "./components/ToDoList";
-import Post from "./components/Post";
+import Footer from "./components/Footer";
 import SearchPage from "./components/SearchPage";
 
 import axios from "axios";
@@ -21,7 +21,8 @@ import UploadProfilePic from "./components/UploadProfilePic";
 
 class App extends React.Component {
   state = {
-    user: this.props.user
+    user: undefined,
+    loadingUser: false,
   };
 
   setUser = user => {
@@ -30,30 +31,34 @@ class App extends React.Component {
     });
   };
 
-  // componentDidMount = () => {
-  //   this.loadUser()
-  // }
-
+  componentDidMount = () => {
+    this.setState({ loadingUser: true });
+    this.loadUser();
+  }
   loadUser = () => {
     axios.get("/api/auth/loggedin").then(response => {
       const user = response.data;
-      this.setUser(user);
+      this.setState({ user: user , loadingUser: false});
+    }).catch((error) => {
+      this.setState({ user: undefined , loadingUser: false});
     });
   }
 
   render() {
-    
+    if (this.state.loadingUser) {
+      return <div></div>;
+    }
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
       <Switch>
         <Route
         exact path="/"
-        render={props => <Signup setUser={this.setUser} {...props} />}
+        render={props => <Signup user={this.state.user} setUser={this.setUser} {...props} />}
         />
         <Route
         exact path="/login"
-        render={props => <Login setUser={this.setUser} {...props} />}
+        render={props => <Login user={this.state.user} setUser={this.setUser} {...props} />}
         />
 
         <Route
@@ -63,18 +68,28 @@ class App extends React.Component {
 
         {/* Route to show another person's profile */}
         <Route
-          exact path="/posts"
+          exact path="/profile/:id"
           render={props => <Profile {...props} user={this.state.user}/> }
           />
       
+          {/* Route to show your own profile */}
         <Route
-            exact path="/profile"
-            render={props => <Profile {...props} user={this.state.user}/> }
+        exact path="/profile"
+        render={props => <Profile {...props} user={this.state.user}/> }
+        />
+        <Route
+         exact path="/portfolio"
+         render={props => <Portfolio {...props} user={this.state.user}/>}
         />
         <Route
           exact path="/chat/:id"
           render={props => <ChatPage {...props} user={this.state.user}/>}
         />
+
+        {/* <Route
+          exact path="/scheduler"
+          render={props => <Schedule {...props} user={this.state.user}/>}
+        /> */}
 
         <Route
           exact path="/chat"
@@ -92,6 +107,7 @@ class App extends React.Component {
             render={props => <SearchPage user={this.state.user}/>}
         />
         </Switch>
+        <Footer/>
       </div>
     );
   }

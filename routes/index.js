@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/User");
 const Post = require("../models/Post");
-
 const uploader = require("../configs/cloudinary");
 const multer = require('multer');
 
@@ -29,16 +28,6 @@ router.get('/api/about/:id', (req, res) => {
   User.findOne({ _id: id })
     .then(user => {
       res.json(user)
-    })
-    .catch(err => console.log(err))
-})
-
-//POST api/profile
-router.post('/api/post', (req, res) => {
-  const { post, owner } = req.body;
-  Post.create({ post, owner })
-    .then(post => {
-      res.json(post)
     })
     .catch(err => console.log(err))
 })

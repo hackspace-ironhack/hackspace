@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { login } from "../services/api";
+import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
   state = {
@@ -39,8 +40,11 @@ export default class Login extends Component {
   };
 
   render() {
+    if (this.props.user !== undefined) {
+      return <Redirect to="/profile"/>
+    }
     return (
-      <>
+      <div className="login-container">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label htmlFor="username">Username: </Form.Label>
@@ -65,9 +69,9 @@ export default class Login extends Component {
           {this.state.message && (
             <Alert variant="danger">{this.state.message}</Alert>
           )}
-          <Button type="submit">Login</Button>
+          <Button variant="warning" type="submit">Login</Button>
         </Form>
-      </>
+      </div>
     );
   }
 }

@@ -6,14 +6,15 @@ import axios from "axios";
 class ChatPage extends React.Component {
   state = {
     typedMessage: "",
-    messages: []
+    messages: [],
+    profile: {},
   }
 
-  userId = this.props.match.params.id;
   intervalId = null
   
   componentDidMount = () => {
     this.loadMessages();
+    this.loadProfile();
     this.intervalId = window.setInterval(this.loadMessages, 5000);
   }
 
@@ -28,8 +29,9 @@ class ChatPage extends React.Component {
   }
 
   onSend = (event) => {
+    const userId = this.props.match.params.id;
     event.preventDefault();
-    axios.post(`/api/chat/messages/${this.userId}`, { message: this.state.typedMessage })
+    axios.post(`/api/chat/messages/${userId}`, { message: this.state.typedMessage })
       .then(response => {
         const { success } = response.data;
         if (success) {
@@ -39,7 +41,8 @@ class ChatPage extends React.Component {
   }
 
   loadMessages = (clearInput = false) => {
-    axios.get(`/api/chat/messages/${this.userId}`)
+    const userId = this.props.match.params.id;
+    axios.get(`/api/chat/messages/${userId}`)
       .then(response => {
         const { messages } = response.data;
         console.log(messages);
@@ -50,11 +53,26 @@ class ChatPage extends React.Component {
       });
   }
 
+  loadProfile = () => {
+    // only loads a different user if an id is passed in the url
+    const userId = this.props.match.params.id;
+    if (userId !== undefined) {
+      axios.get(`/api/user/${userId}`)
+        .then(response => this.setState({ profile: response.data }));
+    }
+}
+
   render = () => {
     return (
-      <Container>
+      <Container className="chat-page-container">
+          <Card bg="warning">
+          <Card.Header>
+            Chat with: {this.state.profile.name}
+          </Card.Header>
+          </Card>
+        
         {this.state.messages.map((message) => 
-          <Card key={message._id} className={this.props.user && this.props.user._id === message.from._id ? "text-right" : ""}>
+          <Card key={message._id} className={this.props.user && this.props.user._id === message.from._id ? "text-right border-secondary" : ""}>
             <Card.Body>
               <Card.Title>
                 {message.from.username}

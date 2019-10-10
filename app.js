@@ -1,12 +1,14 @@
 require("dotenv").config();
-
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const express = require("express");
+//asked for but dont have here:
+//serve favicon
+//morgan
+const bodyParser = require("body-parser");//
+const cookieParser = require("cookie-parser");//
+const express = require("express"); //
 const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
-const path = require("path");
+const path = require("path");//
 
 // WHEN INTRODUCING USERS DO THIS:
 // INSTALL THESE DEPENDENCIES: passport-local, passport, bcrypt, express-session
@@ -14,11 +16,13 @@ const path = require("path");
 
 const session = require("express-session");
 const passport = require("passport");
+// for scheduler 
+
 
 require("./configs/passport");
 
 mongoose
-  .connect("mongodb://localhost/project3", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true
   })
   .then(x => {
@@ -38,10 +42,10 @@ const debug = require("debug")(
 const app = express();
 
 // Middleware Setup
-app.use(logger("dev"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(logger("dev")); //
+app.use(bodyParser.json());//
+app.use(bodyParser.urlencoded({ extended: false }));//
+app.use(cookieParser());//
 
 // Express View engine setup
 
@@ -56,6 +60,7 @@ app.use(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, process.env.STATIC_FOLDER)));
 
 // 
 
@@ -77,14 +82,17 @@ app.locals.title = "HackSpace";
 
 // 
 
+// var users = require ('./routes/users');
+
 const index = require("./routes/index");
 app.use("/", index);
+
 
 const postRoutes = require("./routes/post");
 app.use("/api/post", postRoutes);
 
-// const projectRoutes = require("./routes/project");
-// app.use("/api/projects", projectRoutes);
+const portfolioRoutes = require("./routes/portfolio");
+app.use("/api/portfolio", portfolioRoutes);
 
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
@@ -96,5 +104,9 @@ app.use("/api/chat", chatRoutes);
 // user
 const userRoutes = require("./routes/user");
 app.use("/api/user", userRoutes);
+
+app.use((req, res) => {
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;

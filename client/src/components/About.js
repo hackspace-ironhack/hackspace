@@ -6,7 +6,7 @@ import { Form, Button } from "react-bootstrap";
 
 
 
-export default class About extends Component{
+export default class About extends Component {
      state = {
        name:"",
        city:"",
@@ -50,7 +50,8 @@ export default class About extends Component{
         });
     };
   render() {
-      return (
+    return (
+        <div className="edit-profile-picture">
         <Form onSubmit={this.handleSubmit}>
            <Form.Group>
            <Form.Label htmlFor="name">Name(as you like to see in your profile): </Form.Label>
@@ -69,7 +70,7 @@ export default class About extends Component{
               type="text"
               name="city"
               id="city"
-              value={this.state.description}
+              value={this.state.city}
             />
           </Form.Group>
           <Form.Group>
@@ -93,8 +94,9 @@ export default class About extends Component{
             />
           </Form.Group>
   
-          <Button type="submit">Add to your profile</Button>
+          <Button variant="warning" type="submit">Add to your profile</Button>
         </Form>
+        </div>
       );
     }
   }

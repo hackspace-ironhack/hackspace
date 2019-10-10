@@ -1,17 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const ProjectList = props => {
+  console.log("component props", props)
   return (
     <div>
-      {props.projects.length > 0 && <h2>Projects:</h2>}
+      {/* {props.projects.length > 0 && <h2>Projects:</h2>} */}
 
-      {props.projects.map(project => {
+      {props.portfolio.map((obj,i) => {
         return (
-          <div key={project._id}>
-            <h3>
-              <Link to={`/projects/${project._id}`}>{project.title}</Link>
-            </h3>
+          <div key={i}>
+            <h2>{obj.title}</h2>
+            <h3>{obj.description}</h3>
+            <h3>{obj.tools}</h3>
+            <h3>{obj.link}</h3>
           </div>
         );
       })}
