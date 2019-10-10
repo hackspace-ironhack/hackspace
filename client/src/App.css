@@ -140,6 +140,17 @@ margin-top: 1rem;
   padding: 2em;
 }
 
+@media only screen and (max-width: 800px){
+  .profile-intro {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.about-card {
+  padding-bottom: 2em;
+}
+
 .post-card {
   margin-bottom: 7vh;
 }
