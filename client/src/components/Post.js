@@ -10,7 +10,7 @@ export default class Post extends Component {
   
   componentDidMount=() => {
     this.getData();
-  };
+  }; 
 
   getData = () => {
     axios.get("/api/post")
