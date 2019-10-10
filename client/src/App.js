@@ -40,7 +40,7 @@ class App extends React.Component {
       const user = response.data;
       this.setState({ user: user , loadingUser: false});
     }).catch((error) => {
-      this.setState({ user: false , loadingUser: false});
+      this.setState({ user: undefined , loadingUser: false});
     });
   }
 
