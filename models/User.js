@@ -11,7 +11,7 @@ const userSchema = new Schema(
     skills:String,
     hobbies:String,
     profilePicture:String,
-    uploadedImg:[]
+    uploadMedia:[]
   },
   {
     timestamps: true

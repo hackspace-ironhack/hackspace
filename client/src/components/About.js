@@ -5,13 +5,12 @@ import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 
 
-
 export default class About extends Component {
      state = {
        name:"",
        city:"",
        skills:"",
-       hobbies:""
+       hobbies:"",
      };
 
      handleChange = event => {
@@ -32,7 +31,7 @@ export default class About extends Component {
           name: this.state.name,
           city: this.state.city,
           skills: this.state.skills,
-          hobbies:this.state.hobbies       
+          hobbies:this.state.hobbies  
         })
         .then(() => {
           this.setState({
