@@ -108,11 +108,9 @@ margin-top: 1rem;
 }
 
 /* OPENING PAGE */
-
-
-
 /* SIGN UP */
   .signup-container {
+    background-image: 
     min-height: 89vh;
     display: flex;
     flex-direction: column;
