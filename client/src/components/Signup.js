@@ -63,7 +63,7 @@ export default class Signup extends Component {
                 <ReactRotatingText items={['are stronger', 'create more', 'are unstoppable']} /> </span>
             </div>
             <div className="introduction">
-              <span> Real human connection expanding creation experience on a whole nother level </span>
+              <span> Real human connection expanding creation experience on a whole other level </span>
             </div>
           </div>
           <div style={styles.signup}>
