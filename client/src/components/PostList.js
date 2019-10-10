@@ -12,10 +12,12 @@ class PostList extends React.Component {
   render = () => {
     return (
         <div>
-          {this.props.posts.map(item => {
+          {this.props.posts.reverse().map(item => {
+          console.log("user",this.props)
             return (
                 <Card border="light">
-                  {/* <Card.Header>Posted by {item.owner.name} on {new Date(item.postedOn).toLocaleDateString()}.</Card.Header> */}
+                  {/* <Card.Header>Posted by {item.name} on {new Date(item.postedOn).toLocaleDateString()}.</Card.Header> */}
+                   <Card.Header>Posted by {this.props.user.username} on {item.postedOn} </Card.Header>
                   <Card.Body>
                     <Card.Text>
                       {item.post}

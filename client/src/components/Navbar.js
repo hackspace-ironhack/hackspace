@@ -37,9 +37,9 @@ const Navigation = props => {
                 <Nav.Item>
                   <Link className="bar-links" to="/profile">Profile</Link>
                 </Nav.Item>
-                {/* <Nav.Item>
+                <Nav.Item>
                   <Link className="bar-links" to="/portfolio">Portfolio</Link>
-                </Nav.Item> */}
+                </Nav.Item>
                 <Nav.Item>
                   <Link className="bar-links" to="/chat">Chat</Link>
                 </Nav.Item>

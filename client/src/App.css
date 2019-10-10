@@ -61,6 +61,21 @@ h2 {
   flex: 1;
 }
 
+/* Portfolio */
+.portfolioContainer h2 {
+   text-align: center;
+   display: flex;
+   flex-wrap: wrap;
+}
+.projectbox{
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  
+}
+
+
 /* NAVBAR */
 .navbar-logo {
   width: 10vw;
