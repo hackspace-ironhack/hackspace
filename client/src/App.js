@@ -45,9 +45,9 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.loadingUser) {
-      return <div></div>;
-    }
+    // if (this.state.loadingUser) {
+    //   return <div></div>;
+    // }
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />

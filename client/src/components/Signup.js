@@ -43,7 +43,7 @@ export default class Signup extends Component {
   };
 
   render() {
-    if (this.props.user !== undefined) {
+    if (this.props.user) {
       return <Redirect to="/profile"/>
     }
     const styles = {

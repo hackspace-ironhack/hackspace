@@ -91,8 +91,8 @@ router.get("/loggedin", (req, res) => {
         profilePicture: user.profilePicture
       });
   } else {
-    res.status(401);
-    res.json({ error: 'Unauthorized' });
+    res.status(200);
+    res.json(null);
   }
 });
 

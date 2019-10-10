@@ -16,7 +16,7 @@ export default class Post extends Component {
     axios.get("/api/post")
     .then (response => {
       this.setState({
-        posts:response.data
+        posts:response.data.reverse()
       });
     })
     .catch(err => {
