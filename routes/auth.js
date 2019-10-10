@@ -79,7 +79,6 @@ router.delete("/logout", (req, res) => {
 router.get("/loggedin", (req, res) => {
   const user = req.user;
   if (user) {
-
     res.json(
       {
         username: user.username,
