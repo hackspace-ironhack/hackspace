@@ -42,11 +42,12 @@ export default class Signup extends Component {
   };
 
   render() {
-    if (this.props.user !== undefined) {
-      return <Redirect to="/profile"/>
-    } 
+    console.log(this.props.user)
+    if (this.props.user) {
+      return <Redirect to="/profile" />
+    }
     // else <Redirect to="/"/>
-    
+
     const styles = {
       signup: {
         display: 'flex',
@@ -57,7 +58,7 @@ export default class Signup extends Component {
       <>
         <div className="signup-container">
           <div style={styles.signup}>
-          <span className="first-line">Connect with Tech Professionals from all over the world, share your projects & improve your coding skills. Join Hackspace now!</span>
+            <span className="first-line">Connect with Tech Professionals from all over the world, share your projects & improve your coding skills. Join Hackspace now!</span>
             <div className="text-animation">
               <span>Together we <br></br>
                 <ReactRotatingText items={['are stronger', 'create more', 'are unstoppable']} /> </span>

@@ -20,7 +20,7 @@ export default class UploadProfilePic extends Component {
       this.setState({ profilePicture })
       console.log(this.state);
     })
-    
+
 
 
   }
@@ -41,7 +41,7 @@ export default class UploadProfilePic extends Component {
       .then((response) => {
         // update the user and re-render the Profile
         console.log("Image Changed", response)
-        this.props.loadProfile();
+        this.props.setUser(response.data);
       })
       .catch(err => console.log(err))
   };

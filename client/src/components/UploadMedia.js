@@ -5,18 +5,24 @@ import axios from 'axios';
 export default class UploadMedia
   extends Component {
   state = {
-    uploadedImg: ""
+    name: "",
+    uploadedMedia: ""
   }
+
+  // componentDidMount = () => {
+  //   this.getData();
+  // };
 
 
   onUpload = event => {
     const files = event.target.files[0]
     const uploadData = new FormData()
 
-    uploadData.append("uploadedImg", files)
-    axios.post("/add/image", uploadData).then(response => {
-      const profilePicture = response.data.secure_url
-      this.setState({ profilePicture })
+    uploadData.append("uploadedMedia", files)
+    axios.post("/add/media", uploadData).then(response => {
+      const uploadedMedia = response.data.secure_url
+      this.setState({ uploadedMedia })
+      console.log(this.state);
     })
 
   }
@@ -30,23 +36,31 @@ export default class UploadMedia
 
   handleSubmit = event => {
     event.preventDefault();
-    const { uploadedImg } = this.state;
-    axios.post(`/api/uploadedImg/${this.props.user._id}`, this.state)
-      .then(console.log("Image Changed"))
+    console.log("submit")
+    const { name, uploadedMedia } = this.state;
+    axios.post(`/api/uploadedMedia/${this.props.user._id}`, this.state)
+      .then((response) => {
+        // update the user and re-render the Profile
+        console.log("Image Changed", response)
+        this.props.loadProfile();
+      })
       .catch(err => console.log(err))
   };
 
+
   render() {
-    console.log("State: ",this.state)
-    console.log("Props: ",this.props)
+    console.log("State: ", this.state)
+    console.log("Props: ", this.props)
     return (
       <div>
         <section>
-          <h2>Add Photos to your Profile</h2>
+          <h2>Post </h2>
           <form onSubmit={this.handleSubmit} encType="multipart/form-data" >
             {/* <input type="text" name="name" onChange={this.handleChange} /> */}
-            <input type="file" name="uploadImage" id="uploadImage" placeholder="Upload Photo here"                         onChange={this.onUpload} />
-            // if else?!
+            <input type="file" name="uploadedMedia" id="uploadedMedia" placeholder="Upload Photo here" onChange={this.onUpload} />
+
+            {/* if else?! */}
+
             <input type="submit" value="Submit" />
           </form>
         </section>
