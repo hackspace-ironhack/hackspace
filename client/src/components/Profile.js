@@ -85,9 +85,6 @@ export default class Profile extends Component {
               <UploadProfilePic user={this.props.user} loadProfile={this.loadProfile} />
             </div>
             <div className="profile-intro">
-                {/* <Container>
-                <Row>
-                  <Col lg={4} md={{span:12, order: 2}} sm={{span:12, order: 2}} xl={{span:12, order: 2}}> */}
               <div className="about-card">
 
 
@@ -107,8 +104,6 @@ export default class Profile extends Component {
 
 
               </div>
-                  {/* </Col>
-                  <Col lg={5} md={{span:12, order: 1}} sm={{span:12, order: 1}} xl={{span:12, order: 1}}> */}
               <div className="profile-picture-card">
                 <Card border="dark" style={{ width: '18rem' }}>
                   <Card.Img variant="top" src={user.profilePicture || placeHolder} />
@@ -123,9 +118,6 @@ export default class Profile extends Component {
                   </Card.Body>
                 </Card>
                     </div>
-                    {/* </Col>
-                </Row>
-                  </Container> */}
             </div>
             <div className="profile-content">
                 <div className="profile-links">
