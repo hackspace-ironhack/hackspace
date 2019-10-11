@@ -172,7 +172,7 @@ export default class Profile extends Component {
                     <Card border="warning">
                         <Card.Body>
                             <Card.Text>
-                                <UploadMedia user={this.props.user} setUser={this.setUser} />
+                        <UploadMedia user={this.props.user} loadUser={this.props.loadUser} setUser={this.setUser} />
                             </Card.Text>
                         </Card.Body>
                     </Card>

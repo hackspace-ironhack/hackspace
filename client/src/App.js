@@ -78,7 +78,7 @@ class App extends React.Component {
           {/* Route to show your own profile */}
           <Route
             exact path="/profile"
-            render={props => <Profile setUser={this.setUser} {...props} user={this.state.user} />}
+            render={props => <Profile setUser={this.setUser} loadUser={this.loadUser} {...props} user={this.state.user} />}
           />
           <Route
             exact path="/portfolio"

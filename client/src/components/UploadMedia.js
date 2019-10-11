@@ -44,7 +44,7 @@ export default class UploadMedia
         .then((response) => {
           // update the user and re-render the Profile
           console.log("Image Changed", response)
-          this.props.setUser(response.data);
+          this.props.loadUser();
         })
         .catch(err => console.log(err));
   }
