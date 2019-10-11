@@ -17,6 +17,8 @@ router.get('/:id', (req, res) => {
         city: user.city,
         skills: user.skills,
         hobbies: user.hobbies,
+        profilePicture: user.profilePicture,
+        uploadedMedia: user.uploadedMedia
       }));
 });
 
