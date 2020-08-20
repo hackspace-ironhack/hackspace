@@ -12,7 +12,7 @@
 		"heroku-postbuild": "cd client && npm install && npm run build"
 	},
 	"dependencies": {
-		"bcrypt": "^3.0.6",
+		"bcrypt": "^5.0.0",
 		"body-parser": "^1.18.3",
 		"cloudinary": "^1.15.0",
 		"connect-mongo": "^3.0.0",
